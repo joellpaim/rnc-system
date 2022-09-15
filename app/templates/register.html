@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}
+	Cadastro - RNS System
+{% endblock %}
+
+{% block content %}
+<div class="container mt-2 p-5">
+	<h3 class="text-center"> Cadastro </h3>
+	<hr>
+	{% with msgs =  get_flashed_messages(with_categories=True) %}
+		{% for c, msg in msgs %}
+			{% if c == 'error' %}
+				<div class="flash-error">
+			{% else %}
+				<div class="success">
+			{% endif %}
+				{{ msg | safe }}</div><br>
+		{% endfor %}
+	{% endwith %}
+	<div class="forms login-form">
+		<div class="mx-auto text-center">
+			<img class="img-responsive" src="https://img.icons8.com/external-filled-outline-geotatah/64/000000/external-register-training-management-system-filled-outline-filled-outline-geotatah.png"/>
+		</div>
+		{{ wtf.quick_form(form) }}
+	</div>
+</div>
+{% endblock %}
