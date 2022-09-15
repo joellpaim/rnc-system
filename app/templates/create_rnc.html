@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block title %}
+	Fase 1 - RNS System
+{% endblock %}
+
+{% block content %}
+<div class="container mt-2 p-5">
+	<h3 class="text-center"> Registro e Descrição da NC </h3>
+	<hr>
+	{% with msgs =  get_flashed_messages(with_categories=True) %}
+		{% for c, msg in msgs %}
+			{% if c == 'error' %}
+				<div class="flash-error">
+			{% else %}
+				<div class="success">
+			{% endif %}
+				{{ msg | safe }}</div><br>
+		{% endfor %}
+	{% endwith %}	
+    <nav class="nav_tabs">
+        <ul>
+            <li>
+                <input type="radio" id="tab1" class="rd_tab" name="tabs" checked>
+                <label for="tab1" class="tab_label">Fase 1</label>
+                <div class="tab-content">
+                    <h2>Fase 1</h2>
+                    <article>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In interdum, felis sed feugiat tristique, massa nisl pretium ligula, vel finibus risus lacus at mauris. Proin vel mollis augue. Sed non auctor ipsum, congue facilisis diam. Proin sed enim odio. Ut libero mi, luctus sit amet tincidunt a, ullamcorper sit amet ex. Duis faucibus condimentum lectus, id accumsan diam posuere eu. Cras eu blandit dui, vitae lacinia velit. Aliquam gravida massa a velit pulvinar, ut placerat sem tristique. Vivamus dictum, quam nec pharetra iaculis, risus velit dapibus nunc, quis lobortis sapien ligula mollis nunc. Praesent elementum rutrum tincidunt. Phasellus at lacinia lectus.
+                    </article>
+                </div>
+            </li>
+            <li>
+                <input type="radio" name="tabs" class="rd_tab" id="tab2">
+                <label for="tab2" class="tab_label">Fase 2</label>
+                <div class="tab-content">
+                    <h2>Fase 2</h2>
+                    <article>
+                    Sed sit amet mauris vitae lorem pretium congue. Donec pulvinar auctor est, a porta ipsum vulputate ac. Ut sit amet sollicitudin ante. Sed gravida nulla et nibh consequat sagittis. Donec eu justo eu tortor elementum scelerisque. Mauris mollis volutpat tellus, id volutpat massa ultricies vel. Donec mollis arcu leo, ac ullamcorper eros viverra ut. Aliquam cursus justo nec purus condimentum, eu dignissim nunc mattis. Sed fermentum sollicitudin felis mattis malesuada. Quisque tempor tellus a odio euismod, non suscipit justo laoreet. Curabitur vel urna lorem. Pellentesque semper justo leo, in tristique ex porta at. Sed justo massa, lobortis quis hendrerit ac, eleifend vitae tellus. 
+                    </article>
+                </div>
+            </li>
+            <li>
+                <input type="radio" name="tabs" class="rd_tab" id="tab3">
+                <label for="tab3" class="tab_label">Fase 3</label>
+                <div class="tab-content">
+                    <h2>Fase 3</h2>
+                    <article>
+                        Integer at ligula eget turpis elementum ultrices eget quis tortor. Duis posuere lorem justo, ut malesuada tortor tempus a. Curabitur pellentesque ultricies consectetur. Maecenas diam lorem, hendrerit eget sem ut, tincidunt vulputate ipsum. In vel enim et erat sagittis eleifend vel eu nunc. In hac habitasse platea dictumst. Integer tincidunt, augue at posuere eleifend, lacus quam hendrerit risus, aliquam sollicitudin ligula tellus quis elit. Proin varius fringilla vehicula. Phasellus mollis sollicitudin orci, id fringilla magna volutpat non. Nullam sed luctus nisl. 
+                    </article>
+                </div>
+            </li>
+            <li>
+                <input type="radio" name="tabs" class="rd_tab" id="tab4">
+                <label for="tab4" class="tab_label">Fase 4</label>
+                <div class="tab-content">
+                    <h2>Fase 4</h2>
+                    <article>
+                        Morbi condimentum, ligula in pretium feugiat, erat turpis egestas nisl, eu rutrum felis tortor eget tellus. Donec bibendum finibus sapien id vehicula. Nullam tempus, leo ut tristique pharetra, ligula sapien dictum nunc, eget lacinia mauris tellus sit amet ligula. Etiam posuere metus elementum sem feugiat laoreet. Curabitur efficitur tellus sed felis feugiat vehicula. Ut congue dui at ligula tempus accumsan. Sed ut lacus imperdiet erat aliquam pharetra. Phasellus ultricies nisi mauris, quis tincidunt tortor viverra id. Ut sit amet finibus mi, id fringilla ex. Fusce hendrerit purus nec ipsum volutpat, eu condimentum eros congue. Sed at leo tortor. In a ultrices sapien. Nulla posuere urna id urna semper aliquet. 
+                    </article>
+                </div>
+            </li>
+        </ul>
+    </nav>
+</div>
+{% endblock %}

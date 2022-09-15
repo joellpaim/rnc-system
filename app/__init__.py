@@ -138,4 +138,8 @@ def logout():
 	logout_user()
 	return redirect(url_for('login'))
 
-	
+@app.route("/create-rnc", methods=['POST', 'GET'])
+@login_required
+def create_rnc():
+
+	return render_template("create_rnc.html")
