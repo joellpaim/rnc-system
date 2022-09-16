@@ -10,7 +10,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from .admin.routes import admin
 
 from .db_models import db, User, Role, UserRoles
-from .forms import LoginForm, RegisterForm, RoleForm
+from .forms import LoginForm, RegisterForm, RoleForm, FaseOneForm
 
 # Carregar info do env e registrar o app
 load_dotenv()
@@ -141,5 +141,8 @@ def logout():
 @app.route("/create-rnc", methods=['POST', 'GET'])
 @login_required
 def create_rnc():
-
-	return render_template("create_rnc.html")
+    form1 = FaseOneForm()
+    if form1.validate_on_submit():
+        print(form1)
+        return redirect(url_for('home'))
+    return render_template("create_rnc.html", form1=form1)

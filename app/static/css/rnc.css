@@ -1,58 +1,54 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto+Condensed);
-	*{
-		margin: 0;
-		padding: 0;
-	}
+*{
+	margin: 0;
+	padding: 0;
+}
 
-	body{
-		background-color: #ddd;
-		font-family: 'Roboto Condensed';
-	}
+body{
+	background-color: #ddd;
+	font-family: 'Roboto Condensed';
+}
 
-	.nav_tabs{
-		width: 600px;
-		height: 400px;
-		margin: 100px auto;
-		background-color: #fff;
-		position: relative;
-	}
+.nav_tabs{
+	background-color: #fff;
+	position: relative;
+	border-radius: 10px;
+}
 
-	.nav_tabs ul{
-		list-style: none;
-	}
+.nav_tabs ul{
+	list-style: none;
+}
 
-	.nav_tabs ul li{
-		float: left;
-	}
+.nav_tabs ul li{
+	float: left;
+}
 
-	.tab_label{
-		display: block;
-		width: 100px;
-		background-color: #363b48;
-		padding: 25px;
-		font-size: 20px;
-		color:#fff;
-		cursor: pointer;
-		text-align: center;
-	}
+.tab_label{
+	display: block;
+	max-width: 100px;
+	background-color: #363b48;
+	padding: 25px;
+	font-size: 20px;
+	color:#fff;
+	cursor: pointer;
+	text-align: center;
+}
 
-
-	.nav_tabs .rd_tab { 
+.nav_tabs .rd_tab { 
 	display:none;
 	position: absolute;
 }
 
 .nav_tabs .rd_tab:checked ~ label { 
 	background-color: #e54e43;
-	color:#fff;}
+	color:#fff;
+}
 
 .tab-content{
 	border-top: solid 5px #e54e43;
 	background-color: #fff;
 	display: none;
 	position: absolute;
-	height: 320px;
-	width: 600px;
 	left: 0;	
 }
 

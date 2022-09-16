@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="container mt-2 p-5">
+<div class="container mt-1 p-5">
 	<h3 class="text-center"> Registro e Descrição da NC </h3>
 	<hr>
 	{% with msgs =  get_flashed_messages(with_categories=True) %}
@@ -23,11 +23,89 @@
             <li>
                 <input type="radio" id="tab1" class="rd_tab" name="tabs" checked>
                 <label for="tab1" class="tab_label">Fase 1</label>
-                <div class="tab-content">
-                    <h2>Fase 1</h2>
-                    <article>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In interdum, felis sed feugiat tristique, massa nisl pretium ligula, vel finibus risus lacus at mauris. Proin vel mollis augue. Sed non auctor ipsum, congue facilisis diam. Proin sed enim odio. Ut libero mi, luctus sit amet tincidunt a, ullamcorper sit amet ex. Duis faucibus condimentum lectus, id accumsan diam posuere eu. Cras eu blandit dui, vitae lacinia velit. Aliquam gravida massa a velit pulvinar, ut placerat sem tristique. Vivamus dictum, quam nec pharetra iaculis, risus velit dapibus nunc, quis lobortis sapien ligula mollis nunc. Praesent elementum rutrum tincidunt. Phasellus at lacinia lectus.
-                    </article>
+                <div class="tab-content">    
+                    <div class="row">                          
+                        {% set fields = [] %}
+                        {% for field in form1 %}
+                            {% set temp = fields.append(field) %}
+                                                      
+                        {% endfor %}
+
+                        {% for i in range(0,7) %}                        
+                            <div class="col-md-3 p-5">
+                                
+                                <div class="row">
+                                    <div class="col-md-8 p-3">{{ fields[i].label }}</div>
+                                    <div class="col-md-4 p-3">{{ fields[i] }}</div>
+                                </div>
+                            
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <hr>
+                    <div class="row">
+                        {% for i in range(7,9) %}                        
+                            <div class="col-md-6 p-5">
+                                
+                                <div class="row">
+                                    <div class="col-md-6 p-3">{{ fields[i].label }}</div>
+                                    <div class="col-md-5 p-3">{{ fields[i] }}</div>
+                                </div>
+                            
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <hr>
+                    <div class="row">
+                        {% for i in range(9,12) %}                        
+                            <div class="col-md-4 p-5">
+                                
+                                <div class="row">
+                                    <div class="col-md-6 p-3">{{ fields[i].label }}</div>
+                                    <div class="col-md-4 p-3">{{ fields[i] }}</div>
+                                </div>
+                            
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <hr>
+                    <div class="row">
+                        {% for i in range(12,19) %}                        
+                            <div class="col-md-4 p-5">
+                                
+                                <div class="row">
+                                    <div class="col-md-6 p-3">{{ fields[i].label }}</div>
+                                    <div class="col-md-6 p-3">{{ fields[i] }}</div>
+                                </div>
+                            
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <hr>
+                    <div class="row">
+                        {% for i in range(19,23) %}                        
+                            <div class="col-md-3 p-5">
+                                
+                                <div class="row">
+                                    <div class="col-md-4 p-3">{{ fields[i].label }}</div>
+                                    <div class="col-md-8 p-3">{{ fields[i] }}</div>
+                                </div>
+                            
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <hr>
+                    <div class="row p-5 text-center">
+                        <p>Anexar arquivo</p>
+                        <div class="col-md-12">{{ form1.anexo }}</div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6 p-3">{{ form1.visto }}</div>
+                        <div class="col-md-6 p-3">{{ form1.submit }}</div>
+                    </div>
+                    <hr>
+                    
                 </div>
             </li>
             <li>
