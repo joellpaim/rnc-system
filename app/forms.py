@@ -48,11 +48,11 @@ class FaseOneForm(FlaskForm):
     linha = SelectField("6 - Linha")
     area = SelectField("7 - Área")
     # Row 2
-    procedencia = RadioField('8 - Procedência', choices=[('value','Externa Formal'),('value_two','Externa Informal'),('value_tree','Interno')])
+    procedencia = RadioField('8 - Procedência', choices=[('value','Externa Formal  '),('value_two','Externa Informal  '),('value_tree','Interno')])
     doc_cliente = StringField("Documento Cliente", validators=[DataRequired(), Length(max=50)])
     # Row 3 
-    problema_reincidente = RadioField("9 - Problema Reincidente", choices=[('value', 'Não'), ('value_two', 'Sim')])
-    ha_devolucao = RadioField("10 - Houve Peça Devolvida", choices=[('value', 'Não'), ('value_two', 'Sim')])
+    problema_reincidente = RadioField("9 - Problema Reincidente", choices=[('value', 'Não  '), ('value_two', 'Sim  ')])
+    ha_devolucao = RadioField("10 - Houve Peça Devolvida", choices=[('value', 'Não  '), ('value_two', 'Sim  ')])
     qtd_devolucao = StringField("Quantidade devolvida", validators=[DataRequired(), Length(max=50)])
     # Row 4 
     qual_rnc = TextAreaField("11 - Qual é a não conformidade?", validators=[DataRequired(), Length(max=250)])
@@ -63,10 +63,35 @@ class FaseOneForm(FlaskForm):
     como = TextAreaField("16 - Como foi detectado?", validators=[DataRequired(), Length(max=250)])
     modo_de_falha = TextAreaField("17 - Modo de falha", validators=[DataRequired(), Length(max=250)])
     # Row 5 
-    gerar_tratativa = RadioField("18 - Gerar Tratativa?", choices=[('value', 'Não'), ('value_two', 'Sim')])
+    gerar_tratativa = RadioField("18 - Gerar Tratativa?", choices=[('value', 'Não  '), ('value_two', 'Sim  ')])
     pq_nao_tratativa = StringField("Motivo", validators=[DataRequired(), Length(max=250)])
     pos_vendas = SelectField("Pós Vendas")
     data_registro = DateField("Data", format="%d-%m-%Y")
     visto = MultiCheckboxField("Visto", choices=[('value','Aprovado')])
     anexo = FileField("Anexo")
     submit = SubmitField("Salvar")
+
+class FaseTwoForm(FlaskForm):
+    ct = SelectField("CT", validators=[DataRequired()])
+    area = SelectField("Área", validators=[DataRequired()])
+    exame_objeto = TextAreaField("Examine o objeto", validators=[DataRequired(), Length(max=250)])
+    fatos_e_dados = TextAreaField("Checar fatos e dados", validators=[DataRequired(), Length(max=250)])
+    compare_com_teoria = TextAreaField("Compare com a teoria", validators=[DataRequired(), Length(max=250)])
+    ha_padrao = RadioField("Há padrão dispinível?", choices=[('value', 'Não  '), ('value_two', 'Sim  ')])
+    qual_padrao = TextAreaField("Qual?", validators=[DataRequired(), Length(max=250)])
+    esta_sendo_seguido = RadioField("Está sendo seguido?", choices=[('value', 'Não  '), ('value_two', 'Sim  ')])
+    reclamacao_procedente = RadioField("Reclamação procedente?", choices=[('value', 'Não  '), ('value_two', 'Sim  ')])
+    rps = RadioField("Caso sim", choices=[('value', '8D  '), ('value_two', 'Fast Kaizen')])
+    rpn = TextAreaField("Atualizar informação", validators=[DataRequired(), Length(max=250)])
+    bloquear_embarque = RadioField("Bloquear Embarque", choices=[('value', 'Não  '), ('value_two', 'Sim  ')])
+    msg_bloqueio = TextAreaField("Mensagem", validators=[DataRequired(), Length(max=250)])
+    imagens = FileField("Anexar Imagem")
+    medidas_contencao = TextAreaField("Medidadas de contenção", validators=[DataRequired(), Length(max=250)])
+    nome_coordenador = SelectField("Nome")
+    visto_2 = SelectField("Visto")
+    data_registro_2 = DateField("Data", format="%d-%m-%Y")
+    visto = MultiCheckboxField("Visto", choices=[('value','Aprovado')])
+    anexo_2 = FileField("Anexo")
+    submit = SubmitField("Salvar")
+
+    

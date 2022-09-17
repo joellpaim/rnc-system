@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="container mt-1 p-5">
+<div class="container mt-1 p-1">
 	<h3 class="text-center"> Registro e Descrição da NC </h3>
 	<hr>
 	{% with msgs =  get_flashed_messages(with_categories=True) %}
@@ -20,125 +20,171 @@
 	{% endwith %}	
     <nav class="nav_tabs">
         <ul>
+            <li>    
+              <input type="radio"  class="rd_tab" id="tab1" name="tabs" checked>
+              <label for="tab1" class="tab_label">Fase 1</label>      
+            </li>
             <li>
-                <input type="radio" id="tab1" class="rd_tab" name="tabs" checked>
-                <label for="tab1" class="tab_label">Fase 1</label>
-                <div class="tab-content">    
-                    <div class="row">                          
-                        {% set fields = [] %}
-                        {% for field in form1 %}
-                            {% set temp = fields.append(field) %}
-                                                      
-                        {% endfor %}
+              <input type="radio" class="rd_tab" id="tab2" name="tabs">
+              <label for="tab2" class="tab_label">Fase 2</label>      
+            </li>	
+            <li>
+              <input type="radio" class="rd_tab" id="tab3" name="tabs">
+              <label for="tab3" class="tab_label">Fase 3</label>
+              
+            </li>
+            <li>
+              <input type="radio" class="rd_tab" id="tab4" name="tabs">
+              <label for="tab4" class="tab_label">Fase 4</label>
+              
+            </li>
+            <li>
+              <input type="radio" class="rd_tab" id="tab5" name="tabs">
+              <label for="tab5" class="tab_label">Fase 5</label>
+              
+            </li>
+            <li>
+              <input type="radio" class="rd_tab" id="tab6" name="tabs">
+              <label for="tab6" class="tab_label">Fase 6</label>
+              
+            </li> 
+            <li>
+              <input type="radio" class="rd_tab" id="tab7" name="tabs">
+              <label for="tab7" class="tab_label">Fase 7</label>
+              
+            </li>             	
+           </ul>
 
-                        {% for i in range(0,7) %}                        
-                            <div class="col-md-3 p-5">
-                                
-                                <div class="row">
-                                    <div class="col-md-8 p-3">{{ fields[i].label }}</div>
-                                    <div class="col-md-4 p-3">{{ fields[i] }}</div>
-                                </div>
-                            
-                            </div>
-                        {% endfor %}
-                    </div>
-                    <hr>
-                    <div class="row">
-                        {% for i in range(7,9) %}                        
-                            <div class="col-md-6 p-5">
-                                
-                                <div class="row">
-                                    <div class="col-md-6 p-3">{{ fields[i].label }}</div>
-                                    <div class="col-md-5 p-3">{{ fields[i] }}</div>
-                                </div>
-                            
-                            </div>
-                        {% endfor %}
-                    </div>
-                    <hr>
-                    <div class="row">
-                        {% for i in range(9,12) %}                        
-                            <div class="col-md-4 p-5">
-                                
-                                <div class="row">
-                                    <div class="col-md-6 p-3">{{ fields[i].label }}</div>
-                                    <div class="col-md-4 p-3">{{ fields[i] }}</div>
-                                </div>
-                            
-                            </div>
-                        {% endfor %}
-                    </div>
-                    <hr>
-                    <div class="row">
-                        {% for i in range(12,19) %}                        
-                            <div class="col-md-4 p-5">
-                                
-                                <div class="row">
-                                    <div class="col-md-6 p-3">{{ fields[i].label }}</div>
-                                    <div class="col-md-6 p-3">{{ fields[i] }}</div>
-                                </div>
-                            
-                            </div>
-                        {% endfor %}
-                    </div>
-                    <hr>
-                    <div class="row">
-                        {% for i in range(19,23) %}                        
-                            <div class="col-md-3 p-5">
-                                
-                                <div class="row">
-                                    <div class="col-md-4 p-3">{{ fields[i].label }}</div>
-                                    <div class="col-md-8 p-3">{{ fields[i] }}</div>
-                                </div>
-                            
-                            </div>
-                        {% endfor %}
-                    </div>
-                    <hr>
-                    <div class="row p-5 text-center">
-                        <p>Anexar arquivo</p>
-                        <div class="col-md-12">{{ form1.anexo }}</div>
-                    </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col-md-6 p-3">{{ form1.visto }}</div>
-                        <div class="col-md-6 p-3">{{ form1.submit }}</div>
-                    </div>
-                    <hr>
+           <div class="tab-content" data-tab="tab1">
+            <div class="row">                          
+                {% set fields = [] %}
+                {% for field in form1 %}
+                    {% set temp = fields.append(field) %}                                                      
+                {% endfor %}
+
+                {% for i in range(0,7) %} 
+                <!--Etapa 1-->                       
+                    <div class="col-md-3 p-5">
+                        
+                        <div class="row">
+                            <th>{{ fields[i].label }}</th>
+                            <td>{{ fields[i] }}</td>
+                        </div>
                     
-                </div>
-            </li>
-            <li>
-                <input type="radio" name="tabs" class="rd_tab" id="tab2">
-                <label for="tab2" class="tab_label">Fase 2</label>
-                <div class="tab-content">
-                    <h2>Fase 2</h2>
-                    <article>
-                    Sed sit amet mauris vitae lorem pretium congue. Donec pulvinar auctor est, a porta ipsum vulputate ac. Ut sit amet sollicitudin ante. Sed gravida nulla et nibh consequat sagittis. Donec eu justo eu tortor elementum scelerisque. Mauris mollis volutpat tellus, id volutpat massa ultricies vel. Donec mollis arcu leo, ac ullamcorper eros viverra ut. Aliquam cursus justo nec purus condimentum, eu dignissim nunc mattis. Sed fermentum sollicitudin felis mattis malesuada. Quisque tempor tellus a odio euismod, non suscipit justo laoreet. Curabitur vel urna lorem. Pellentesque semper justo leo, in tristique ex porta at. Sed justo massa, lobortis quis hendrerit ac, eleifend vitae tellus. 
-                    </article>
-                </div>
-            </li>
-            <li>
-                <input type="radio" name="tabs" class="rd_tab" id="tab3">
-                <label for="tab3" class="tab_label">Fase 3</label>
-                <div class="tab-content">
-                    <h2>Fase 3</h2>
-                    <article>
-                        Integer at ligula eget turpis elementum ultrices eget quis tortor. Duis posuere lorem justo, ut malesuada tortor tempus a. Curabitur pellentesque ultricies consectetur. Maecenas diam lorem, hendrerit eget sem ut, tincidunt vulputate ipsum. In vel enim et erat sagittis eleifend vel eu nunc. In hac habitasse platea dictumst. Integer tincidunt, augue at posuere eleifend, lacus quam hendrerit risus, aliquam sollicitudin ligula tellus quis elit. Proin varius fringilla vehicula. Phasellus mollis sollicitudin orci, id fringilla magna volutpat non. Nullam sed luctus nisl. 
-                    </article>
-                </div>
-            </li>
-            <li>
-                <input type="radio" name="tabs" class="rd_tab" id="tab4">
-                <label for="tab4" class="tab_label">Fase 4</label>
-                <div class="tab-content">
-                    <h2>Fase 4</h2>
-                    <article>
-                        Morbi condimentum, ligula in pretium feugiat, erat turpis egestas nisl, eu rutrum felis tortor eget tellus. Donec bibendum finibus sapien id vehicula. Nullam tempus, leo ut tristique pharetra, ligula sapien dictum nunc, eget lacinia mauris tellus sit amet ligula. Etiam posuere metus elementum sem feugiat laoreet. Curabitur efficitur tellus sed felis feugiat vehicula. Ut congue dui at ligula tempus accumsan. Sed ut lacus imperdiet erat aliquam pharetra. Phasellus ultricies nisi mauris, quis tincidunt tortor viverra id. Ut sit amet finibus mi, id fringilla ex. Fusce hendrerit purus nec ipsum volutpat, eu condimentum eros congue. Sed at leo tortor. In a ultrices sapien. Nulla posuere urna id urna semper aliquet. 
-                    </article>
-                </div>
-            </li>
-        </ul>
+                    </div>
+                {% endfor %}
+            </div>
+            <hr>
+            <div class="row">
+                {% for i in range(7,9) %} 
+                <!--Etapa 2-->                       
+                    <div class="col-md-5 p-5">
+                        
+                        <div class="row">
+                            <div class="table-responsive">
+                                <th>{{ fields[i].label }}</th>
+                                <td>{{ fields[i] }}</td>
+                            </div>
+                        </div>
+                    
+                    </div>
+                {% endfor %}
+            </div>
+            <hr>
+            <div class="row">
+                {% for i in range(9,12) %} 
+                <!--Etapa 3-->                       
+                    <div class="col-md-4 p-5">                                
+                        <div class="row">
+                            <div class="table-responsive">
+                                <th>{{ fields[i].label }}</th>
+                                <td>{{ fields[i] }}</td>
+                            </div>
+                        </div>                            
+                    </div>
+                {% endfor %}
+            </div>
+            <hr>
+            <div class="row">
+                {% for i in range(12,19) %} 
+                <!--Etapa 4-->                       
+                    <div class="col-md-4 p-5">                                
+                        <div class="row">
+                            <th>{{ fields[i].label }}</th>
+                            <td>{{ fields[i] }}</td>
+                        </div>                            
+                    </div>
+                {% endfor %}
+            </div>
+            <hr>
+            <div class="row">
+                {% for i in range(19,23) %}
+                <!--Etapa 5-->                        
+                    <div class="col-md-6 p-5">                                
+                        <div class="row">
+                            <div class="table-responsive">
+                                <th>{{ fields[i].label }}</th>
+                                <td>{{ fields[i] }}</td>
+                            </div>
+                        </div>                            
+                    </div>
+                {% endfor %}
+            </div>
+            <hr>
+            <div class="row p-5 text-center">
+                <p>Anexar arquivo</p>
+                <div class="col-md-12">{{ form1.anexo }}</div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-6 p-3">{{ form1.visto }}</div>
+                <div class="col-md-6 p-3">{{ form1.submit }}</div>
+            </div>
+            <hr>    
+           </div>
+           <div class="tab-content" data-tab="tab2">  
+              Conteúdo Aba 2		
+           </div>
+           <div class="tab-content" data-tab="tab3">  
+              Conteúdo Aba 3			
+           </div>
+           <div class="tab-content" data-tab="tab4">  
+              Conteúdo Aba 4		
+           </div>
+           <div class="tab-content" data-tab="tab5">  
+              Conteúdo Aba 5		
+           </div>
+           <div class="tab-content" data-tab="tab6">  
+              Conteúdo Aba 6		
+           </div>
+           <div class="tab-content" data-tab="tab7">  
+              Conteúdo Aba 7		
+           </div>                
     </nav>
 </div>
+
+<div>
+
+</div>
+
+<script>
+    var atual;
+    var contents = document.querySelectorAll("[data-tab]")
+    var onRadioChange = function (event) {
+    if (atual) atual.content.classList.toggle("show", atual.radio.checked)
+    this.content.classList.toggle("show", this.radio.checked)
+    atual = this
+    };
+
+    [].forEach.call(contents, function (content) {
+    var obj = {};
+    obj.content = content
+    obj.radio = document.getElementById(content.dataset.tab)
+    obj.radio.addEventListener("change", onRadioChange.bind(obj))
+    if (obj.radio.checked) {  
+        obj.radio.dispatchEvent(new Event("change"))
+    }
+    })
+</script>
+
 {% endblock %}

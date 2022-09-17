@@ -31,7 +31,7 @@
             {% include 'navbar.html' %}
         </div>
         <div class='dashboard-app'>
-            <header class='dashboard-toolbar'><a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a></header>
+            <header class='dashboard-toolbar'><a href="#!" class="menu-toggle"><i class="icone fas fa-bars"></i></a></header>
             <div class='dashboard-content'>
                 <div class='container'>
                     {% block content %}
@@ -52,6 +52,15 @@
     <!--Navar JS-->
     <script src="{{ url_for('static', filename='js/navbar.js') }}"></script>  
     
+    <script>
+        $('.fas.fa-bars').click(function() {
+        $(this).toggleClass("fa-solid fa-xmark").fadeIn(1000);
+        });
+
+        $('.fa-solid.fa-xmark').click(function() {
+        $(this).toggleClass("fas fa-bars").fadeIn(1000);
+        });
+    </script>
 
 </body>
 </html>
