@@ -40,13 +40,13 @@ class RegisterForm(FlaskForm):
 
 class FaseOneForm(FlaskForm):
     # Row 1
-    cod_planta = SelectField("1 - Código Planta", validators=[DataRequired()])
-    nome_cliente = SelectField("2 - Nome Cliente", validators=[DataRequired()])
-    segmento = SelectField("3 - Segmento")
-    cod_peca = SelectField("4 - Código da Peça")
-    descricao_peca = SelectField("5 - Descrição da Peça")
-    linha = SelectField("6 - Linha")
-    area = SelectField("7 - Área")
+    cod_planta = StringField("1 - Código Planta", validators=[DataRequired(), Length(max=50)])
+    nome_cliente = StringField("2 - Nome Cliente", validators=[DataRequired(), Length(max=50)])
+    segmento = StringField("3 - Segmento", validators=[DataRequired(), Length(max=50)])
+    cod_peca = StringField("4 - Código da Peça", validators=[DataRequired(), Length(max=50)])
+    descricao_peca = StringField("5 - Descrição da Peça", validators=[DataRequired(), Length(max=50)])
+    linha = StringField("6 - Linha", validators=[DataRequired(), Length(max=50)])
+    area = StringField("7 - Área", validators=[DataRequired(), Length(max=50)])
     # Row 2
     procedencia = RadioField('8 - Procedência', choices=[('value','Externa Formal  '),('value_two','Externa Informal  '),('value_tree','Interno')])
     doc_cliente = StringField("Documento Cliente", validators=[DataRequired(), Length(max=50)])
@@ -65,15 +65,15 @@ class FaseOneForm(FlaskForm):
     # Row 5 
     gerar_tratativa = RadioField("18 - Gerar Tratativa?", choices=[('value', 'Não  '), ('value_two', 'Sim  ')])
     pq_nao_tratativa = StringField("Motivo", validators=[DataRequired(), Length(max=250)])
-    pos_vendas = SelectField("Pós Vendas")
-    data_registro = DateField("Data", format="%d-%m-%Y")
+    pos_vendas = StringField("Pós Vendas", validators=[DataRequired(), Length(max=50)])
+    #data_registro = DateField("Data", format="%d-%m-%Y")
     visto = MultiCheckboxField("Visto", choices=[('value','Aprovado')])
     anexo = FileField("Anexo")
     submit = SubmitField("Salvar")
 
 class FaseTwoForm(FlaskForm):
-    ct = SelectField("CT", validators=[DataRequired()])
-    area = SelectField("Área", validators=[DataRequired()])
+    ct = StringField("CT", validators=[DataRequired(), Length(max=50)])
+    area = StringField("Área", validators=[DataRequired(), Length(max=50)])
     exame_objeto = TextAreaField("Examine o objeto", validators=[DataRequired(), Length(max=250)])
     fatos_e_dados = TextAreaField("Checar fatos e dados", validators=[DataRequired(), Length(max=250)])
     compare_com_teoria = TextAreaField("Compare com a teoria", validators=[DataRequired(), Length(max=250)])

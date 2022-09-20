@@ -66,7 +66,6 @@ body{
 	border-top: solid 5px var(--navcolor);
 	background-color: #fff;
 	display: none;
-	position: absolute;
 	left: 0;	
 	max-width: 90vw;
 	margin-bottom: 5px

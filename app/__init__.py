@@ -10,7 +10,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from .admin.routes import admin
 
 from .db_models import db, User, Role, UserRoles
-from .forms import LoginForm, RegisterForm, RoleForm, FaseOneForm
+from .forms import LoginForm, RegisterForm, RoleForm, FaseOneForm, FaseTwoForm
 
 # Carregar info do env e registrar o app
 load_dotenv()
@@ -52,7 +52,6 @@ def inject_now():
 
 @login_manager.user_loader
 def load_user(user_id):
-    print('Usuario: ', user_id)
     try:
         return User.query.get(user_id)
     except:
@@ -73,7 +72,6 @@ def create_roles():
         return redirect(url_for('create_roles'))
 
     return render_template("roles.html", form=form)
-
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
@@ -142,7 +140,10 @@ def logout():
 @login_required
 def create_rnc():
     form1 = FaseOneForm()
+    form2 = FaseTwoForm()
     if form1.validate_on_submit():
-        print(form1)
-        return redirect(url_for('home'))
-    return render_template("create_rnc.html", form1=form1)
+        for i in form1.data:
+            print(request.form.get(i))
+    
+        
+    return render_template("create_rnc.html", form1=form1, form2=form2)
