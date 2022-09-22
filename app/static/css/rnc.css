@@ -90,3 +90,6 @@ body{
 div.table-responsive>ul>li {
 	padding-right: 10px;
 }
+.form-group {
+	margin-top: 15px;
+}

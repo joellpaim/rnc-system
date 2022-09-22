@@ -10,7 +10,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from .admin.routes import admin
 
 from .db_models import db, User, Role, UserRoles
-from .forms import LoginForm, RegisterForm, RoleForm, FaseOneForm, FaseTwoForm
+from .forms import LoginForm, RegisterForm, RoleForm, FaseOneForm, FaseTwoForm, FaseTreeForm
 
 # Carregar info do env e registrar o app
 load_dotenv()
@@ -141,9 +141,18 @@ def logout():
 def create_rnc():
     form1 = FaseOneForm()
     form2 = FaseTwoForm()
+    form3 = FaseTreeForm()
     if form1.validate_on_submit():
         for i in form1.data:
             print(request.form.get(i))
     
         
-    return render_template("create_rnc.html", form1=form1, form2=form2)
+    return render_template("create_rnc.html", form1=form1, form2=form2, form3=form3)
+
+@app.route("/profile", methods=['POST', 'GET'])
+@login_required
+def profile():
+    if current_user.is_authenticated:
+        return render_template("profile.html")
+    else:
+        return redirect(url_for('login'))

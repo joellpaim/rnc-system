@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-    Registro - RNS System
+    Registro - RNC APP
 {% endblock %}
 
 {% block content %}
@@ -157,81 +157,15 @@
 
         <!--Fase 2-->
         <div class="tab-content" data-tab="tab2">  
-            <div class="row">                          
-                {% set fields2 = [] %}
-                {% for field2 in form2 %}
-                    {% set temp = fields2.append(field2) %}                                                      
-                {% endfor %}
-
-                <div class="col-md-12 p-5"> 
-                    <!--Etapa 1-->              
-                        <div class="row"> 
-                            <p>2.1 - Gemba</p>
-                            {% for i in range(0,2) %} 
-                           <div class="col-md-6">
-                                                               
-                                <div class="table-responsive">                                
-                                    <th>{{ fields2[i].label }}</th>
-                                    <td>{{ fields2[i] }}</td>
-                                </div>
-                            </div> 
-                            {% endfor %}                     
-                        </div>   
-                </div>
-            </div>
-            <hr>
-            <div class="row">   
-                <!--Etapa 2-->                       
-                    <div class="col-md-12 p-5">
-                        <div class="row">
-                            <p>2.2 - Gembutsu</p>
-                            <div class="table-responsive">
-                                <th>{{ fields2[3].label }}</th>
-                                <td>{{ fields2[3] }}</td>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <p>2.3 - Genjitsu</p>
-                            <div class="table-responsive">
-                                <th>{{ fields2[4].label }}</th>
-                                <td>{{ fields2[4] }}</td>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <p>2.4 - Genri</p>
-                            <div class="table-responsive">
-                                <th>{{ fields2[5].label }}</th>
-                                <td>{{ fields2[5] }}</td>
-                            </div>
-                        </div>
-                    
-                    </div>
-                
-            </div>
-            <hr>		
+            <div class="forms p-5">
+                {{ wtf.quick_form(form2) }}
+            </div>	
         </div>
+        <!--Fase 3-->
         <div class="tab-content" data-tab="tab3">  
-            <form action="{{ url_for('create_rnc') }}" method="POST">
-                {{ form1.csrf_token }}
-
-                {% set fields = [] %}
-                {% for field in form1 %}
-                    {% set temp = fields.append(field) %}                                                      
-                {% endfor %}
-
-                {% for i in range(0,9) %}
-                <div class="form-group">
-                    {{ fields[i].label }}
-                    {{ fields[i](class='form-control') }}
-                    {% for error in fields[i].errors %}
-                    <span style="color: red;">[{{ error }}]</span>
-                    {% endfor %}
-                </div>
-                {% endfor %}
-                <input type="submit" class="btn btn-success">
-            </form>
+            <div class="forms p-5">
+                {{ wtf.quick_form(form3) }}
+            </div>
         </div>
         <div class="tab-content" data-tab="tab4">  
             Conteúdo Aba 4		

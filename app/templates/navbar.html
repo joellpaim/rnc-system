@@ -46,7 +46,7 @@
 
             {% endfor %}           
 
-            <a href="#" class="dashboard-nav-item"><i class="fas fa-user"></i> Perfil </a>
+            <a href="{{ url_for('profile') }}" class="dashboard-nav-item"><i class="fas fa-user"></i> Perfil </a>
             {% else %}
             {% endif %}
 

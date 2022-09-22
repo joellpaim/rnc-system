@@ -3,7 +3,7 @@ from wtforms import (PasswordField, SelectMultipleField, StringField,
                      SubmitField, SelectField, RadioField, TextAreaField, DateField, FileField, widgets)
 from wtforms.validators import DataRequired, Email, EqualTo, Length, Regexp
 
-from app.db_models import Role
+from app.db_models import Role, User
 
 class MultiCheckboxField(SelectMultipleField):
     """
@@ -94,4 +94,15 @@ class FaseTwoForm(FlaskForm):
     anexo_2 = FileField("Anexo")
     submit = SubmitField("Salvar")
 
+class FaseTreeForm(FlaskForm):
+    qtd_inspecionada = StringField("Quantidade de inspecionadas?", validators=[DataRequired(), Length(max=50)])
+    qtd_reprovadas = StringField("Quantidade de reprovadas", validators=[DataRequired(), Length(max=50)])
+    destino = RadioField("Destino", choices=[('value', 'Desvio  '), ('value_two', 'Sucateamento')])
+    texto_destino = TextAreaField("Texto de destino", validators=[DataRequired(), Length(max=250)])
+    equipe = MultiCheckboxField("Membros da equipe:", coerce=int)
+    data_registro_3 = DateField("Data", format="%d-%m-%Y")
+    anexo_3 = FileField("Anexo")   
     
+    def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+            self.equipe.choices = [(user.id, user.first_name) for user in User.query.all()]

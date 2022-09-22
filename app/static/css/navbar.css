@@ -267,6 +267,7 @@ h1, .h1 {
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
+    
 }
 
 .dashboard-nav-dropdown.show {
@@ -351,7 +352,7 @@ h1, .h1 {
     -webkit-justify-content: center;
     -ms-flex-pack: center;
     justify-content: center;
-    color: var(--navcolor);
+    color: var(--navcolor);    
 }
 
 .menu-toggle:hover, .menu-toggle:active, .menu-toggle:focus {
@@ -362,7 +363,13 @@ h1, .h1 {
 .menu-toggle i {
     font-size: 20px;
 }
-
+@keyframes anime {
+    0%   {background: var(--fundo);}
+    25%  {background: var(--navcolor);}
+    50%  {background: var(--pcolor);}
+    75%  {background: var(--scolor);}
+    100% {background: var(--fundo);}
+}
 .dashboard-toolbar {
     min-height: 84px;
     background-color: #dfdfdf;
