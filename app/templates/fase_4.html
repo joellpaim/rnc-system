@@ -1,0 +1,209 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Registro - RNC APP
+{% endblock %}
+
+{% block content %}
+<div class="container mt-1 p-1">
+	<h3 class="text-center"> Registro e Descrição da NC </h3>
+	<hr>
+	{% with msgs =  get_flashed_messages(with_categories=True) %}
+		{% for c, msg in msgs %}
+			{% if c == 'error' %}
+				<div class="flash-error">
+			{% else %}
+				<div class="success">
+			{% endif %}
+				{{ msg | safe }}</div><br>
+		{% endfor %}
+	{% endwith %}	
+    <nav class="nav_tabs">
+        <!--Tabs-->
+        <ul>
+            <li>    
+              <input type="radio"  class="rd_tab" id="tab1" name="tabs" checked>
+              <label for="tab1" class="tab_label">Fase 1</label>      
+            </li>
+            <li>
+              <input type="radio" class="rd_tab" id="tab2" name="tabs">
+              <label for="tab2" class="tab_label">Fase 2</label>      
+            </li>	
+            <li>
+              <input type="radio" class="rd_tab" id="tab3" name="tabs">
+              <label for="tab3" class="tab_label">Fase 3</label>
+              
+            </li>
+            <li>
+              <input type="radio" class="rd_tab" id="tab4" name="tabs">
+              <label for="tab4" class="tab_label">Fase 4</label>
+              
+            </li>
+            <li>
+              <input type="radio" class="rd_tab" id="tab5" name="tabs">
+              <label for="tab5" class="tab_label">Fase 5</label>
+              
+            </li>
+            <li>
+              <input type="radio" class="rd_tab" id="tab6" name="tabs">
+              <label for="tab6" class="tab_label">Fase 6</label>
+              
+            </li> 
+            <li>
+              <input type="radio" class="rd_tab" id="tab7" name="tabs">
+              <label for="tab7" class="tab_label">Fase 7</label>
+              
+            </li>             	
+        </ul>
+
+        <!--Fase 1-->
+        <div class="tab-content" data-tab="tab1">
+            <form action="{{ url_for('create_rnc') }}" method="POST">
+                {{ form1.csrf_token }}
+                <div class="row">                          
+                    {% set fields = [] %}
+                    {% for field in form1 %}
+                        {% set temp = fields.append(field) %}                                                      
+                    {% endfor %}
+
+                    {% for i in range(0,7) %} 
+                    <!--Etapa 1-->                       
+                        <div class="col-md-3 p-5">
+                            
+                            <div class="form-group">
+                                {{ fields[i].label }}
+                                {{ fields[i](class='form-control') }}
+                                {% for error in fields[i].errors %}
+                                <span style="color: red;">[{{ error }}]</span>
+                                {% endfor %}
+                            </div>
+                        
+                        </div>
+                    {% endfor %}
+                </div>
+                <hr>
+                <div class="row">
+                    {% for i in range(7,9) %} 
+                    <!--Etapa 2-->                       
+                        <div class="col-md-5 p-5">                            
+                            <div class="form-group">                                
+                                {{ fields[i].label }}
+                                {{ fields[i] }}
+                                {% for error in fields[i].errors %}
+                                <span style="color: red;">[{{ error }}]</span>
+                                {% endfor %}                               
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <hr>
+                <div class="row">
+                    {% for i in range(9,12) %} 
+                    <!--Etapa 3-->                       
+                        <div class="col-md-4 p-5">                                
+                            <div class="form-group">
+                                {{ fields[i].label }}
+                                {{ fields[i] }}
+                                {% for error in fields[i].errors %}
+                                <span style="color: red;">[{{ error }}]</span>
+                                {% endfor %} 
+                            </div>                            
+                        </div>
+                    {% endfor %}
+                </div>
+                <hr>
+                <div class="row">
+                    {% for i in range(12,19) %} 
+                    <!--Etapa 4-->                       
+                        <div class="col-md-4 p-5">                                
+                            <div class="form-group">
+                                {{ fields[i].label }}
+                                {{ fields[i] }}
+                                {% for error in fields[i].errors %}
+                                <span style="color: red;">[{{ error }}]</span>
+                                {% endfor %} 
+                            </div>                              
+                        </div>
+                    {% endfor %}
+                </div>
+                <hr>
+                <div class="row">
+                    {% for i in range(19,23) %}
+                    <!--Etapa 5-->                        
+                        <div class="col-md-6 p-5">                                
+                            <div class="form-group">
+                                {{ fields[i].label }}
+                                {{ fields[i] }}
+                                {% for error in fields[i].errors %}
+                                <span style="color: red;">[{{ error }}]</span>
+                                {% endfor %} 
+                            </div>                           
+                        </div>
+                    {% endfor %}
+                </div>
+                <hr>
+                <div class="row p-5 text-center">
+                    <p>Anexar arquivo</p>
+                    <div class="col-md-12">{{ form1.anexo }}</div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-6 p-3">{{ form1.visto }}</div>                    
+                </div>
+                <input type="submit" class="btn btn-success">
+                <hr>
+            </form>
+        </div>
+
+        <!--Fase 2-->
+        <div class="tab-content" data-tab="tab2">  
+            <div class="forms p-5">
+                {{ wtf.quick_form(form2) }}
+            </div>	
+        </div>
+        <!--Fase 3-->
+        <div class="tab-content" data-tab="tab3">  
+            <div class="forms p-5">
+                {{ wtf.quick_form(form3) }}
+            </div>
+        </div>
+        <div class="tab-content" data-tab="tab4">  
+            Conteúdo Aba 4		
+        </div>
+        <div class="tab-content" data-tab="tab5">  
+            Conteúdo Aba 5		
+        </div>
+        <div class="tab-content" data-tab="tab6">  
+            Conteúdo Aba 6		
+        </div>
+        <div class="tab-content" data-tab="tab7">  
+            Conteúdo Aba 7		
+        </div>                
+    </nav>
+</div>
+
+<div>
+
+</div>
+
+<script>
+    var atual;
+    var contents = document.querySelectorAll("[data-tab]")
+    var onRadioChange = function (event) {
+    if (atual) atual.content.classList.toggle("show", atual.radio.checked)
+    this.content.classList.toggle("show", this.radio.checked)
+    atual = this
+    };
+
+    [].forEach.call(contents, function (content) {
+    var obj = {};
+    obj.content = content
+    obj.radio = document.getElementById(content.dataset.tab)
+    obj.radio.addEventListener("change", onRadioChange.bind(obj))
+    if (obj.radio.checked) {  
+        obj.radio.dispatchEvent(new Event("change"))
+    }
+    })
+</script>
+
+{% endblock %}

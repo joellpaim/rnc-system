@@ -93,3 +93,26 @@ div.table-responsive>ul>li {
 .form-group {
 	margin-top: 15px;
 }
+ul.form-control>li {
+	margin-right: 10px;
+	margin-left: 10px;
+}
+input[type='file']{
+	display: none;
+}
+.t-img {
+	max-width: 500px;
+	width: 100%;
+}
+.imageContainer {
+	width: 100%;
+	max-width: 300px;
+	background-color: #1B98E0;
+	margin-top: 10%;
+	border: 5px solid #13293D;
+	border-radius: 10px;
+}
+#imgPhoto-1 {
+	width: 100%;
+	padding: 20px;
+}

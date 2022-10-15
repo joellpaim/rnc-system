@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Fase 1 - RNC APP
+{% endblock %}
+
+{% block content %}
+<div class="container mt-1 p-1">
+	<h3 class="text-center"> Registro e Descrição da NC </h3>
+	<hr>
+	{% with msgs =  get_flashed_messages(with_categories=True) %}
+		{% for c, msg in msgs %}
+			{% if c == 'error' %}
+				<div class="flash-error">
+			{% else %}
+				<div class="success">
+			{% endif %}
+				{{ msg | safe }}</div><br>
+		{% endfor %}
+	{% endwith %}	
+    
+</div>
+</div>
+{% endblock %}

@@ -150,7 +150,7 @@
                 <div class="row">
                     <div class="col-md-6 p-3">{{ form1.visto }}</div>                    
                 </div>
-                <input type="submit" class="btn btn-success">
+                <button type="submit" value="salvar_1" class="btn btn-success" name="submit">Salvar</button>
                 <hr>
             </form>
         </div>
@@ -158,17 +158,241 @@
         <!--Fase 2-->
         <div class="tab-content" data-tab="tab2">  
             <div class="forms p-5">
-                {{ wtf.quick_form(form2) }}
-            </div>	
+                <form action="{{ url_for('create_rnc') }}" method="POST">
+                    {{ form2.csrf_token }}
+                  
+                    <div class="row mt-2">
+                        <div class="col-md-12 mb-4">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <span>2.1 - Gemba</span>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        {{ form2.ct.label }}
+                                        {{ form2.ct(class='form-control') }}
+                                        {% for error in form2.ct.errors %}
+                                        <span style="color: red;">[{{ error }}]</span>
+                                        {% endfor %}
+                                    </div> 
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        {{ form2.area.label }}
+                                        {{ form2.area(class='form-control') }}
+                                        {% for error in form2.area.errors %}
+                                        <span style="color: red;">[{{ error }}]</span>
+                                        {% endfor %}
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="col-md-12 mt-2 mb-4">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <span>2.2 - Gembutsu</span><br>
+                                    <span>{{ form2.exame_objeto.label }}</span>
+                                </div>
+                                <div class="col-md-10">
+                                    <span>Descreva as condições iniciais, irregularidade encontradas ( part number, modelo, maquina/equipamento )
+                                    </span>
+                                    <div class="form-group">                                       
+                                        {{ form2.exame_objeto(class='form-control') }}
+                                        {% for error in form2.exame_objeto.errors %}
+                                        <span style="color: red;">[{{ error }}]</span>
+                                        {% endfor %}
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr>
+                        <div class="col-md-12 mt-2 mb-4">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <span>2.3 - Genjitsu</span><br>
+                                    <span>{{ form2.fatos_e_dados.label }}</span>
+                                </div>
+                                <div class="col-md-10">
+                                    <span>Dados coletados (Postos de inspeção, turno, criticidade, DMM, frequencia, horas paradas, retrabalho, entre outros)
+                                    </span>
+                                    <div class="form-group">                                       
+                                        {{ form2.fatos_e_dados(class='form-control') }}
+                                        {% for error in form2.fatos_e_dados.errors %}
+                                        <span style="color: red;">[{{ error }}]</span>
+                                        {% endfor %}
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr>
+                        <div class="col-md-12 mt-2 mb-4">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <span>2.4 - Genri</span><br>
+                                    <span>{{ form2.compare_com_teoria.label }}</span>
+                                </div>
+                                <div class="col-md-10">
+                                    <span>Teoria ( normas, desenhos, instruções, entre outros )
+                                    </span>
+                                    <div class="form-group">                                       
+                                        {{ form2.compare_com_teoria(class='form-control') }}
+                                        {% for error in form2.compare_com_teoria.errors %}
+                                        <span style="color: red;">[{{ error }}]</span>
+                                        {% endfor %}
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+
+                        <div class="col-md-12 mt-2 mb-4">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <span>2.5 - Gensoku</span><br>
+                                    <span>{{ form2.compare_com_teoria.label }}</span>
+                                </div>
+                                <div class="col-md-2">
+                                    <span>Há padrão disponível?</span><br><br><br>
+                                    <span id="pergunta-seguido" style="display: none;">Está sendo seguido?</span>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">                                       
+                                        {{ form2.ha_padrao(class='form-control') }}
+                                        {% for error in form2.ha_padrao.errors %}
+                                        <span style="color: red;">[{{ error }}]</span>
+                                        {% endfor %}
+                                    </div> 
+                                    <div id="e-seguido" class="form-group" style="display: none;">                                       
+                                        {{ form2.esta_sendo_seguido(class='form-control') }}
+                                        {% for error in form2.esta_sendo_seguido.errors %}
+                                        <span style="color: red;">[{{ error }}]</span>
+                                        {% endfor %}
+                                    </div> 
+                                </div>
+                                <div id="qual-padrao-1" class="col-md-1 p-3" style="display: none;">
+                                    <span>Qual?</span>
+                                </div>
+                                <div id="qual-padrao-2" class="col-md-5" style="display: none;">
+                                    <div class="form-group">                                       
+                                        {{ form2.qual_padrao(class='form-control') }}
+                                        {% for error in form2.qual_padrao.errors %}
+                                        <span style="color: red;">[{{ error }}]</span>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr>
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <span>2.6 - Reclamação Procedente?</span>
+                                        <div class="form-group">
+                                            {{ form2.reclamacao_procedente(class='form-control') }}
+                                            {% for error in form2.reclamacao_procedente.errors %}
+                                            <span style="color: red;">[{{ error }}]</span>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                    <div id="reclama-sim" class="col-md-2" style="display: none;">
+                                        <div class="form-group">
+                                            {{ form2.rps(class='form-control') }}
+                                            {% for error in form2.rps.errors %}
+                                            <span style="color: red;">[{{ error }}]</span>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                    <div id="reclama-nao" class="col-md-8" style="display: none;">
+                                        <span>Atualizar com informação</span>
+                                        <div class="form-group">
+                                            {{ form2.rpn(class='form-control') }}
+                                            {% for error in form2.rpn.errors %}
+                                            <span style="color: red;">[{{ error }}]</span>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr>
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <span>2.7 - Bloquear Embarque?</span>
+                                    <div class="col-md-2">
+                                        <div class="form-group">  
+                                            {{ form2.bloquear_embarque(class='form-control') }}
+                                            {% for error in form2.bloquear_embarque.errors %}
+                                            <span style="color: red;">[{{ error }}]</span>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">  
+                                            {{ form2.msg_bloqueio.label }}
+                                            {{ form2.msg_bloqueio(class='form-control') }}
+                                            {% for error in form2.msg_bloqueio.errors %}
+                                            <span style="color: red;">[{{ error }}]</span>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr>
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="t-img">
+                                            <div class="imageContainer">
+                                                <img id="imgPhoto-1" src="https://thumbs.dreamstime.com/b/%C3%ADcone-de-linha-cor-simples-feedback-positivo-design-ilustra%C3%A7%C3%A3o-s%C3%ADmbolos-e-sinais-isolado-sobre-fundo-branco-159309287.jpg" alt="" srcset="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">  
+                                            {{ form2.imagem_pos.label }}
+                                            {{ form2.imagem_pos(class='form-control') }}
+                                            {% for error in form2.imagem_pos.errors %}
+                                            <span style="color: red;">[{{ error }}]</span>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">  
+                                            {{ form2.imagem_neg.label }}
+                                            {{ form2.imagem_neg(class='form-control') }}
+                                            {% for error in form2.imagem_neg.errors %}
+                                            <span style="color: red;">[{{ error }}]</span>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr>
+                        </div>
+
+                    </div>
+                      
+                    <hr class="mt-2">
+                    <button type="submit" class="btn btn-success mt-2" name="salvar_2">Salvar</button>
+                  </form>
+            </div>
+            
+            
         </div>
         <!--Fase 3-->
         <div class="tab-content" data-tab="tab3">  
             <div class="forms p-5">
                 {{ wtf.quick_form(form3) }}
             </div>
+            <input type = "submit" value = "salvar_3" name = "submit">
         </div>
         <div class="tab-content" data-tab="tab4">  
-            Conteúdo Aba 4		
+            <div class="forms p-5">
+                {{ wtf.quick_form(form4) }}
+            </div>		
         </div>
         <div class="tab-content" data-tab="tab5">  
             Conteúdo Aba 5		
@@ -205,5 +429,7 @@
     }
     })
 </script>
+
+
 
 {% endblock %}

@@ -10,7 +10,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from .admin.routes import admin
 
 from .db_models import db, User, Role, UserRoles
-from .forms import LoginForm, RegisterForm, RoleForm, FaseOneForm, FaseTwoForm, FaseTreeForm
+from .forms import LoginForm, RegisterForm, RoleForm, FaseOneForm, FaseTwoForm, FaseTreeForm, FaseFourForm
 
 # Carregar info do env e registrar o app
 load_dotenv()
@@ -142,12 +142,24 @@ def create_rnc():
     form1 = FaseOneForm()
     form2 = FaseTwoForm()
     form3 = FaseTreeForm()
-    if form1.validate_on_submit():
-        for i in form1.data:
-            print(request.form.get(i))
+    form4 = FaseFourForm()
+    if request.method == 'POST':
+        if request.form['submit'] == 'salvar_1':
+            for i in form1.data:
+                print(request.form.get(i))
+            flash('Salvo', 'success')
+
+        if request.form['submit'] == 'salvar_2':
+            for i in form2.data:
+                print(request.form.get(i))
+
+        if request.form['submit'] == 'salvar_3':
+            for i in form3.data:
+                print(request.form.get(i))
+            flash('Salvo', 'success')
     
         
-    return render_template("create_rnc.html", form1=form1, form2=form2, form3=form3)
+    return render_template("create_rnc.html", form1=form1, form2=form2, form3=form3, form4=form4)
 
 @app.route("/profile", methods=['POST', 'GET'])
 @login_required

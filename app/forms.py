@@ -69,7 +69,7 @@ class FaseOneForm(FlaskForm):
     #data_registro = DateField("Data", format="%d-%m-%Y")
     visto = MultiCheckboxField("Visto", choices=[('value','Aprovado')])
     anexo = FileField("Anexo")
-    submit = SubmitField("Salvar")
+    salvar_1 = SubmitField("Salvar")
 
 class FaseTwoForm(FlaskForm):
     ct = StringField("CT", validators=[DataRequired(), Length(max=50)])
@@ -77,32 +77,38 @@ class FaseTwoForm(FlaskForm):
     exame_objeto = TextAreaField("Examine o objeto", validators=[DataRequired(), Length(max=250)])
     fatos_e_dados = TextAreaField("Checar fatos e dados", validators=[DataRequired(), Length(max=250)])
     compare_com_teoria = TextAreaField("Compare com a teoria", validators=[DataRequired(), Length(max=250)])
-    ha_padrao = RadioField("Há padrão dispinível?", choices=[('value', 'Não  '), ('value_two', 'Sim  ')])
+    ha_padrao = RadioField("Há padrão dispinível?", choices=[('sim', 'Sim'), ('nao', 'Não')])
     qual_padrao = TextAreaField("Qual?", validators=[DataRequired(), Length(max=250)])
-    esta_sendo_seguido = RadioField("Está sendo seguido?", choices=[('value', 'Não  '), ('value_two', 'Sim  ')])
-    reclamacao_procedente = RadioField("Reclamação procedente?", choices=[('value', 'Não  '), ('value_two', 'Sim  ')])
+    esta_sendo_seguido = RadioField("Está sendo seguido?", choices=[('sim', 'Sim'), ('nao', 'Não')])
+    reclamacao_procedente = RadioField("Reclamação procedente?", choices=[('sim', 'Sim'), ('nao', 'Não')])
     rps = RadioField("Caso sim", choices=[('value', '8D  '), ('value_two', 'Fast Kaizen')])
     rpn = TextAreaField("Atualizar informação", validators=[DataRequired(), Length(max=250)])
-    bloquear_embarque = RadioField("Bloquear Embarque", choices=[('value', 'Não  '), ('value_two', 'Sim  ')])
+    bloquear_embarque = RadioField("Bloquear Embarque", choices=[('sim', 'Sim'), ('nao', 'Não')])
     msg_bloqueio = TextAreaField("Mensagem", validators=[DataRequired(), Length(max=250)])
-    imagens = FileField("Anexar Imagem")
+    imagem_pos = FileField("Anexar Imagem")
+    imagem_neg = FileField("Anexar Imagem")
     medidas_contencao = TextAreaField("Medidadas de contenção", validators=[DataRequired(), Length(max=250)])
-    nome_coordenador = SelectField("Nome")
-    visto_2 = SelectField("Visto")
+    nome_coordenador = StringField("Nome")
+    visto_2 = StringField("Visto")
     data_registro_2 = DateField("Data", format="%d-%m-%Y")
-    visto = MultiCheckboxField("Visto", choices=[('value','Aprovado')])
+    visto = MultiCheckboxField("Visto", choices=[('value','Aprovado'), ('value2','Reprovado')])
     anexo_2 = FileField("Anexo")
-    submit = SubmitField("Salvar")
+    salvar_2 = SubmitField("Salvar")
 
 class FaseTreeForm(FlaskForm):
     qtd_inspecionada = StringField("Quantidade de inspecionadas?", validators=[DataRequired(), Length(max=50)])
     qtd_reprovadas = StringField("Quantidade de reprovadas", validators=[DataRequired(), Length(max=50)])
-    destino = RadioField("Destino", choices=[('value', 'Desvio  '), ('value_two', 'Sucateamento')])
+    destino = RadioField("Destino", choices=[('desvio', 'Desvio  '), ('sucateamento', 'Sucateamento')])
     texto_destino = TextAreaField("Texto de destino", validators=[DataRequired(), Length(max=250)])
     equipe = MultiCheckboxField("Membros da equipe:", coerce=int)
     data_registro_3 = DateField("Data", format="%d-%m-%Y")
-    anexo_3 = FileField("Anexo")   
+    anexo_3 = FileField("Anexo") 
+    salvar_3 = SubmitField("Salvar")
     
     def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
             self.equipe.choices = [(user.id, user.first_name) for user in User.query.all()]
+
+class FaseFourForm(FlaskForm):
+    mao_de_obra = StringField('Mão de obra')   
+    submit = SubmitField("Salvar") 
