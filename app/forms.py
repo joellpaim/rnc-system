@@ -135,7 +135,7 @@ class FaseFourForm(FlaskForm):
 
     coordenador_rnc = StringField('Coordenador da RNC')
     data_registro_4 = DateField("Data", format="%d-%m-%Y")
-    visto_4 = MultiCheckboxField("Visto", choices=[('value','Aprovado'), ('value2','Reprovado')])
+    visto_4 = MultiCheckboxField("Visto", choices=[('aprovado','Aprovado'), ('reprovado','Reprovado')])
     anexo_4 = FileField("Anexo") 
 
     salvar_4 = SubmitField("Salvar") 
@@ -143,3 +143,60 @@ class FaseFourForm(FlaskForm):
     def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
             self.linha.choices = ["Agricola", "Média", "Pesada"]
+
+class FaseFiveForm(FlaskForm):
+    observacao = TextAreaField("5.2 - Observação", validators=[DataRequired(), Length(max=250)])
+
+    coordenador_rnc = StringField('Coordenador da RNC')
+    data_registro_5 = DateField("Data", format="%d-%m-%Y")
+    visto_5 = MultiCheckboxField("Visto", choices=[('aprovado','Aprovado'), ('reprovado','Reprovado')])
+    anexo_5 = FileField("Anexo") 
+
+    salvar_5 = SubmitField("Salvar") 
+
+class FaseSixForm(FlaskForm):
+    acoes_corretivas = RadioField("6.1 - Ações corretivas foram eficazes?", choices=[('sim', 'Sim  '), ('nao', 'Não')])
+    devolver_para_fase = SelectField("Devolver para a Fase", coerce=int)
+    porque_devolver = TextAreaField("Porque?", validators=[DataRequired(), Length(max=250)])
+    metodo_de_validacao = RadioField("6.2 - Método de Validação?", choices=[('poka_yoke', 'Poka Yoke'), ('3_lotes', '3 Lotes'), ('30_dias', '30 Dias')])
+    anexo_evidencia = FileField("Anexar Evidência") 
+    anexo_pv1 = FileField("Anexar PV1") 
+
+    pos_vendas = StringField('Pos Vendas')
+    data_registro_6 = DateField("Data", format="%d-%m-%Y")
+    visto_6 = MultiCheckboxField("Visto", choices=[('aprovado','Aprovado'), ('reprovado','Reprovado')])
+    anexo_6 = FileField("Anexo") 
+
+    salvar_6 = SubmitField("Salvar") 
+
+
+    def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+            self.devolver_para_fase.choices = [ 1, 2, 3, 4, 5]
+
+class FaseSevenForm(FlaskForm):
+    revisao_fmea = RadioField("7.1 - Revisado FMEA/Plano de Controle", choices=[('sim', 'Sim  '), ('nao', 'Não')])
+    porque_revisao_fmea = TextAreaField("Porque?", validators=[DataRequired(), Length(max=250)])
+
+    codigos_similares = RadioField("7.2 - Abrange Códigos Similares?", choices=[('sim', 'Sim  '), ('nao', 'Não')])
+    quais = StringField('Quais?')
+
+    eng_processos = StringField('Engenharia de Processos')
+    data_registro_7 = DateField("Data", format="%d-%m-%Y")
+    visto_7 = MultiCheckboxField("Visto", choices=[('aprovado','Aprovado'), ('reprovado','Reprovado')])
+    anexo_7 = FileField("Anexo") 
+
+    salvar_7 = SubmitField("Salvar") 
+
+class FaseEigthForm(FlaskForm):
+    custos = StringField('8.1 - Custos R$')
+
+    site_cliente_atualizado = RadioField("Foi Atualizdo o Site do Cliente?", choices=[('sim', 'Sim  '), ('nao', 'Não')])
+    porque_nao = StringField('')
+
+    pos_vendas = StringField('Pos Vendas')
+    data_registro_8 = DateField("Data", format="%d-%m-%Y")
+    visto_8 = MultiCheckboxField("Visto", choices=[('aprovado','Aprovado'), ('reprovado','Reprovado')])
+    anexo_8 = FileField("Anexo") 
+
+    salvar_8 = SubmitField("Salvar") 
