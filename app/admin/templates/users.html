@@ -8,11 +8,18 @@
 	{% with msgs =  get_flashed_messages(with_categories=True) %}
 	{% for c, msg in msgs %}
 		{% if c == 'error' %}
-			<div class="flash-error">
+			<div class="card text-white bg-danger mb-3 m-auto" style="max-width: 18rem;">
+				<div class="card-header">Erro</div>
+				<div class="card-body">
+					<p class="card-text">
+
 		{% else %}
-			<div class="success">
+			<div class="card text-dark bg-info mb-3 m-auto" style="max-width: 18rem;">
+				<div class="card-header">Info</div>
+				<div class="card-body">
+					<p class="card-text">
 		{% endif %}
-			{{ msg }}</div><br>
+			{{ msg | safe }}</p></div></div><br>
 	{% endfor %}
 	{% endwith %}
 
@@ -56,7 +63,7 @@
     {% for user in users %}
 				<tr>
 					<td scope="row">{{ user.id }}</td>
-					<td>{{ user.name }}</td>
+					<td>{{ user.first_name }}</td>
 					<td>{{ user.email }}</td>
 					<td>{{ user.phone }}</td>
 					<td>{{ user.roles }}</td>

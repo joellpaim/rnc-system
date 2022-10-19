@@ -345,13 +345,13 @@
                             <div class="col-md-12">
                                 <div class="row">
                                     <div class="col-md-6">
+                                        {{ form2.imagem_pos.label }}
                                         <div class="t-img">
-                                            <div class="imageContainer">
-                                                <img id="imgPhoto-1" src="https://thumbs.dreamstime.com/b/%C3%ADcone-de-linha-cor-simples-feedback-positivo-design-ilustra%C3%A7%C3%A3o-s%C3%ADmbolos-e-sinais-isolado-sobre-fundo-branco-159309287.jpg" alt="" srcset="">
+                                            <div class="imageContainerPos">
+                                                <img id="imgPhoto-1" src="{{ url_for('static', filename='img/pos.png') }}" alt="" srcset="">
                                             </div>
                                         </div>
-                                        <div class="form-group">  
-                                            {{ form2.imagem_pos.label }}
+                                        <div class="form-group">                                              
                                             {{ form2.imagem_pos(class='form-control') }}
                                             {% for error in form2.imagem_pos.errors %}
                                             <span style="color: red;">[{{ error }}]</span>
@@ -359,8 +359,13 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group">  
-                                            {{ form2.imagem_neg.label }}
+                                        {{ form2.imagem_neg.label }}
+                                        <div class="t-img">
+                                            <div class="imageContainerNeg">
+                                                <img id="imgPhoto-2" src="{{ url_for('static', filename='img/neg.png') }}" alt="" srcset="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">                                              
                                             {{ form2.imagem_neg(class='form-control') }}
                                             {% for error in form2.imagem_neg.errors %}
                                             <span style="color: red;">[{{ error }}]</span>
@@ -369,6 +374,76 @@
                                     </div>
                                 </div>
                             </div>
+                            <hr>
+
+                            <div class="col-md-12">
+                                <div class="form-group"> 
+                                    {{ form2.medidas_contencao.label }}                                             
+                                    {{ form2.medidas_contencao(class='form-control') }}
+                                    {% for error in form2.medidas_contencao.errors %}
+                                    <span style="color: red;">[{{ error }}]</span>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <hr>
+
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <span>Definir coordenador da Reclamação</span>
+                                        <div class="form-group"> 
+                                            {{ form2.nome_coordenador.label }}                                             
+                                            {{ form2.nome_coordenador(class='form-control') }}
+                                            {% for error in form2.nome_coordenador.errors %}
+                                            <span style="color: red;">[{{ error }}]</span>
+                                            {% endfor %}
+                                        </div>
+                                        <div class="form-group"> 
+                                            {{ form2.visto_2.label }}                                             
+                                            {{ form2.visto_2(class='form-control') }}
+                                            {% for error in form2.visto_2.errors %}
+                                            <span style="color: red;">[{{ error }}]</span>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group"> 
+                                            {{ form2.data_registro_2.label }}                                             
+                                            {{ form2.data_registro_2(class='form-control') }}
+                                            {% for error in form2.data_registro_2.errors %}
+                                            <span style="color: red;">[{{ error }}]</span>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group"> 
+                                            {{ form2.visto.label }}                                             
+                                            {{ form2.visto(class='form-control') }}
+                                            {% for error in form2.visto.errors %}
+                                            <span style="color: red;">[{{ error }}]</span>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+
+                            <div class="d-block">
+                                <div class="a-img">
+                                    <div class="imageContainerAnexo">
+                                        {{ form2.anexo_2.label }}
+                                        <img id="imgPhoto-3" src="{{ url_for('static', filename='img/anexo.png') }}" alt="anexo" srcset="">
+                                    </div>
+                                </div>
+                                <div class="form-group">                                                                                  
+                                    {{ form2.anexo_2(class='form-control') }}
+                                    {% for error in form2.anexo_2.errors %}
+                                    <span style="color: red;">[{{ error }}]</span>
+                                    {% endfor %}
+                                </div>
+                            </div>
+
+
 
                             <hr>
                         </div>
@@ -378,6 +453,15 @@
                     <hr class="mt-2">
                     <button type="submit" class="btn btn-success mt-2" name="salvar_2">Salvar</button>
                   </form>
+                  <hr>
+
+                  <div class="col-md-12 mt-3">
+                    <span>Método da Reclamação</span><br>
+                    <button class="btn btn-info mt-2" >Imprimir Alerta de Qualidade</button>
+                    <button class="btn btn-info mt-2" >Imprimir PV1</button>
+                  </div>
+                  
+                  
             </div>
             
             

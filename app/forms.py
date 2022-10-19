@@ -85,8 +85,8 @@ class FaseTwoForm(FlaskForm):
     rpn = TextAreaField("Atualizar informação", validators=[DataRequired(), Length(max=250)])
     bloquear_embarque = RadioField("Bloquear Embarque", choices=[('sim', 'Sim'), ('nao', 'Não')])
     msg_bloqueio = TextAreaField("Mensagem", validators=[DataRequired(), Length(max=250)])
-    imagem_pos = FileField("Anexar Imagem")
-    imagem_neg = FileField("Anexar Imagem")
+    imagem_pos = FileField("Anexar Imagem Padrão")
+    imagem_neg = FileField("Anexar Imagem Defeito")
     medidas_contencao = TextAreaField("Medidadas de contenção", validators=[DataRequired(), Length(max=250)])
     nome_coordenador = StringField("Nome")
     visto_2 = StringField("Visto")
@@ -110,5 +110,36 @@ class FaseTreeForm(FlaskForm):
             self.equipe.choices = [(user.id, user.first_name) for user in User.query.all()]
 
 class FaseFourForm(FlaskForm):
-    mao_de_obra = StringField('Mão de obra')   
-    submit = SubmitField("Salvar") 
+    mao_de_obra = StringField('Mão de obra ou Pessoas')
+    medida = StringField('Medida')
+    maquina = StringField('Máquina ou Equipamento')
+    materiais = StringField('Materiais')
+    meio_ambiente = StringField('Meio Ambiente')
+    metodo = StringField('Método')   
+
+    what = StringField('What?')
+    why = StringField('Why?')
+    where = StringField('Where?')
+    when = StringField('When?')
+    who = StringField('Who?')
+    how_much = StringField('How much?')
+
+    auditoria_escalonada = RadioField("É necessário realizar Auditoria Escalonada?", choices=[('nao', 'Não'), ('sim', 'Sim')])
+    numero_auditorias = StringField('Numero')
+
+    linha = SelectField("Qual a linha geradora da não conformidade?", coerce=str)
+    
+    causa_um = TextAreaField("1", validators=[DataRequired(), Length(max=250)])
+    causa_dois = TextAreaField("2", validators=[DataRequired(), Length(max=250)])
+    causa_tres = TextAreaField("3", validators=[DataRequired(), Length(max=250)])
+
+    coordenador_rnc = StringField('Coordenador da RNC')
+    data_registro_4 = DateField("Data", format="%d-%m-%Y")
+    visto_4 = MultiCheckboxField("Visto", choices=[('value','Aprovado'), ('value2','Reprovado')])
+    anexo_4 = FileField("Anexo") 
+
+    salvar_4 = SubmitField("Salvar") 
+
+    def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+            self.linha.choices = ["Agricola", "Média", "Pesada"]

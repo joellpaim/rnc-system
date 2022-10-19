@@ -104,15 +104,27 @@ input[type='file']{
 	max-width: 500px;
 	width: 100%;
 }
-.imageContainer {
+.a-img {
+	max-width: 100px;
+	width: 100%;
+}
+.imageContainerPos {
 	width: 100%;
 	max-width: 300px;
-	background-color: #1B98E0;
+	background-color: #A3D063;
 	margin-top: 10%;
 	border: 5px solid #13293D;
 	border-radius: 10px;
 }
-#imgPhoto-1 {
+.imageContainerNeg {
+	width: 100%;
+	max-width: 300px;
+	background-color: #C95248;
+	margin-top: 10%;
+	border: 5px solid #13293D;
+	border-radius: 10px;
+}
+#imgPhoto-1, #imgPhoto-2, #imgPhoto-3 {
 	width: 100%;
 	padding: 20px;
 }

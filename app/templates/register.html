@@ -11,18 +11,93 @@
 	{% with msgs =  get_flashed_messages(with_categories=True) %}
 		{% for c, msg in msgs %}
 			{% if c == 'error' %}
-				<div class="flash-error">
+				<div class="card text-white bg-danger mb-3 m-auto" style="max-width: 18rem;">
+					<div class="card-header">Erro</div>
+  					<div class="card-body">
+    					<p class="card-text">
+  
 			{% else %}
-				<div class="success">
+				<div class="card text-dark bg-info mb-3 m-auto" style="max-width: 18rem;">
+					<div class="card-header">Info</div>
+  					<div class="card-body">
+    					<p class="card-text">
 			{% endif %}
-				{{ msg | safe }}</div><br>
+				{{ msg | safe }}</p></div></div><br>
 		{% endfor %}
 	{% endwith %}
-	<div class="forms login-form">
-		<div class="mx-auto text-center">
-			<img class="img-responsive" src="https://img.icons8.com/external-filled-outline-geotatah/64/000000/external-register-training-management-system-filled-outline-filled-outline-geotatah.png"/>
-		</div>
-		{{ wtf.quick_form(form) }}
-	</div>
+	
+	<section class="registro">
+		<form action="{{ url_for('register') }}" method="POST">
+			{{ form.csrf_token }}
+			<div class="mx-auto text-center">
+				<img class="img-responsive" src="https://img.icons8.com/external-filled-outline-geotatah/64/000000/external-register-training-management-system-filled-outline-filled-outline-geotatah.png"/>
+			</div>
+			
+			<div class="col-md-12">
+				<div class="row">
+					<div class="col-md-5">
+						<div class="form-group">
+							{{ form.first_name.label }}
+							{{ form.first_name(class='form-control') }}
+							{% for error in form.first_name.errors %}
+							<span style="color: red;">[{{ error }}]</span>
+							{% endfor %}
+						  </div>
+					</div>
+					<div class="col-md-7">
+						<div class="form-group">
+							{{ form.last_name.label }}
+							{{ form.last_name(class='form-control') }}
+							{% for error in form.last_name.errors %}
+							<span style="color: red;">[{{ error }}]</span>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="col-md-12">
+				<div class="row">
+					<div class="col-md-7"><div class="form-group">
+						{{ form.email.label }}
+						{{ form.email(class='form-control') }}
+						{% for error in form.email.errors %}
+						<span style="color: red;">[{{ error }}]</span>
+						{% endfor %}
+					</div></div>
+					<div class="col-md-5">
+						<div class="form-group">
+							{{ form.phone.label }}
+							{{ form.phone(class='form-control') }}
+							{% for error in form.phone.errors %}
+							<span style="color: red;">[{{ error }}]</span>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+			</div>	
+	
+			<div class="form-group">
+				{{ form.password.label }}
+				{{ form.password(class='form-control') }}
+				{% for error in form.password.errors %}
+				<span style="color: red;">[{{ error }}]</span>
+				{% endfor %}
+			</div>
+
+			<div class="form-group">
+				{{ form.confirm.label }}
+				{{ form.confirm(class='form-control') }}
+				{% for error in form.confirm.errors %}
+				<span style="color: red;">[{{ error }}]</span>
+				{% endfor %}
+			</div>
+			<hr>			
+
+			<button id="btn_registro" type="submit" name="submit" class="btn btn-dark d-block mt-2">Registrar</button>
+				
+		</form>
+	</section>
+
 </div>
 {% endblock %}

@@ -34,6 +34,20 @@ document.getElementById("reclamacao_procedente-1").onclick = function(){
 let photo1 = document.getElementById('imgPhoto-1');
 let file_pos = document.getElementById('imagem_pos');
 
+let photo2 = document.getElementById('imgPhoto-2');
+let file_neg = document.getElementById('imagem_neg');
+
+let photo3 = document.getElementById('imgPhoto-3');
+let file_anexo = document.getElementById('anexo_2');
+
 photo1.addEventListener('click', () => {
     file_pos.click();
+})
+
+photo2.addEventListener('click', () => {
+    file_neg.click();
+})
+
+photo3.addEventListener('click', () => {
+    file_anexo.click();
 })

@@ -1,0 +1,29 @@
+
+/* Página de login */
+.login {
+    max-width: 500px;
+    padding: 15px;
+    border-radius: 10px;
+    margin: auto;
+    background-color: #1B98E0;
+    color: white;
+}
+#btn_login {
+    display: block;
+    width: 100%;
+}
+
+/* Página de cadastro */
+
+.registro {
+    max-width: 500px;
+    padding: 15px;
+    border-radius: 10px;
+    margin: auto;
+    background-color: #1B98E0;
+    color: white;
+}
+#btn_registro {
+    display: block;
+    width: 100%;
+}
