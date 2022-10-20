@@ -51,3 +51,12 @@ photo2.addEventListener('click', () => {
 photo3.addEventListener('click', () => {
     file_anexo.click();
 })
+
+// Fase 3
+
+let photo4 = document.getElementById('imgPhoto-4');
+let file_anexo4 = document.getElementById('anexo_3');
+
+photo4.addEventListener('click', () => {
+    file_anexo4.click();
+})

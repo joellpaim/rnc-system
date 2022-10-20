@@ -10,7 +10,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from .admin.routes import admin
 
 from .db_models import db, User, Role, UserRoles
-from .forms import LoginForm, RegisterForm, RoleForm, FaseOneForm, FaseTwoForm, FaseTreeForm, FaseFourForm
+from .forms import LoginForm, RegisterForm, RoleForm, FaseOneForm, FaseTwoForm, FaseTreeForm, FaseFourForm, FaseFiveForm, FaseSixForm, FaseSevenForm, FaseEigthForm
 
 # Carregar info do env e registrar o app
 load_dotenv()
@@ -139,10 +139,16 @@ def logout():
 @app.route("/create-rnc", methods=['POST', 'GET'])
 @login_required
 def create_rnc():
+
     form1 = FaseOneForm()
     form2 = FaseTwoForm()
     form3 = FaseTreeForm()
     form4 = FaseFourForm()
+    form5 = FaseFiveForm()
+    form6 = FaseSixForm()
+    form7 = FaseSevenForm()
+    form8 = FaseEigthForm()
+
     if request.method == 'POST':
         if request.form['submit'] == 'salvar_1':
             for i in form1.data:
@@ -152,14 +158,41 @@ def create_rnc():
         if request.form['submit'] == 'salvar_2':
             for i in form2.data:
                 print(request.form.get(i))
+            flash('Salvo', 'success')
 
         if request.form['submit'] == 'salvar_3':
             for i in form3.data:
                 print(request.form.get(i))
             flash('Salvo', 'success')
+
+        if request.form['submit'] == 'salvar_4':
+            for i in form4.data:
+                print(request.form.get(i))
+            flash('Salvo', 'success')
+
+        if request.form['submit'] == 'salvar_5':
+            for i in form5.data:
+                print(request.form.get(i))
+            flash('Salvo', 'success')
+
+        if request.form['submit'] == 'salvar_6':
+            for i in form6.data:
+                print(request.form.get(i))
+            flash('Salvo', 'success')
+
+        if request.form['submit'] == 'salvar_7':
+            for i in form7.data:
+                print(request.form.get(i))
+            flash('Salvo', 'success')
     
+        if request.form['submit'] == 'salvar_8':
+            for i in form8.data:
+                print(request.form.get(i))
+            flash('Salvo', 'success')
+
         
-    return render_template("create_rnc.html", form1=form1, form2=form2, form3=form3, form4=form4)
+        
+    return render_template("create_rnc.html", form1=form1, form2=form2, form3=form3, form4=form4, form5=form5, form6=form6, form7=form7, form8=form8)
 
 @app.route("/profile", methods=['POST', 'GET'])
 @login_required

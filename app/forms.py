@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import (PasswordField, SelectMultipleField, StringField,
-                     SubmitField, SelectField, RadioField, TextAreaField, DateField, FileField, widgets)
+                     SubmitField, SelectField, RadioField, TextAreaField, DateField, FileField, widgets, IntegerField)
 from wtforms.validators import DataRequired, Email, EqualTo, Length, Regexp
 
 from app.db_models import Role, User
@@ -78,11 +78,11 @@ class FaseTwoForm(FlaskForm):
     fatos_e_dados = TextAreaField("Checar fatos e dados", validators=[DataRequired(), Length(max=250)])
     compare_com_teoria = TextAreaField("Compare com a teoria", validators=[DataRequired(), Length(max=250)])
     ha_padrao = RadioField("Há padrão dispinível?", choices=[('sim', 'Sim'), ('nao', 'Não')])
-    qual_padrao = TextAreaField("Qual?", validators=[DataRequired(), Length(max=250)])
+    qual_padrao = TextAreaField("Qual?", validators=[Length(max=250)])
     esta_sendo_seguido = RadioField("Está sendo seguido?", choices=[('sim', 'Sim'), ('nao', 'Não')])
     reclamacao_procedente = RadioField("Reclamação procedente?", choices=[('sim', 'Sim'), ('nao', 'Não')])
     rps = RadioField("Caso sim", choices=[('value', '8D  '), ('value_two', 'Fast Kaizen')])
-    rpn = TextAreaField("Atualizar informação", validators=[DataRequired(), Length(max=250)])
+    rpn = TextAreaField("Atualizar informação", validators=[Length(max=250)])
     bloquear_embarque = RadioField("Bloquear Embarque", choices=[('sim', 'Sim'), ('nao', 'Não')])
     msg_bloqueio = TextAreaField("Mensagem", validators=[DataRequired(), Length(max=250)])
     imagem_pos = FileField("Anexar Imagem Padrão")
@@ -96,11 +96,12 @@ class FaseTwoForm(FlaskForm):
     salvar_2 = SubmitField("Salvar")
 
 class FaseTreeForm(FlaskForm):
-    qtd_inspecionada = StringField("Quantidade de inspecionadas?", validators=[DataRequired(), Length(max=50)])
-    qtd_reprovadas = StringField("Quantidade de reprovadas", validators=[DataRequired(), Length(max=50)])
+    qtd_inspecionada = IntegerField("Quantidade de inspecionadas?", validators=[DataRequired()])
+    qtd_reprovadas = IntegerField("Quantidade de reprovadas?", validators=[DataRequired()])
     destino = RadioField("Destino", choices=[('desvio', 'Desvio  '), ('sucateamento', 'Sucateamento')])
     texto_destino = TextAreaField("Texto de destino", validators=[DataRequired(), Length(max=250)])
-    equipe = MultiCheckboxField("Membros da equipe:", coerce=int)
+    equipe = MultiCheckboxField("3.3 - Definição da Equipe", coerce=int)
+    coordenador_rnc = StringField('Coordenador da RNC')
     data_registro_3 = DateField("Data", format="%d-%m-%Y")
     anexo_3 = FileField("Anexo") 
     salvar_3 = SubmitField("Salvar")

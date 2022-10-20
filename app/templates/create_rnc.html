@@ -11,11 +11,18 @@
 	{% with msgs =  get_flashed_messages(with_categories=True) %}
 		{% for c, msg in msgs %}
 			{% if c == 'error' %}
-				<div class="flash-error">
+				<div class="card text-white bg-danger mb-3 m-auto" style="max-width: 18rem;">
+					<div class="card-header">Erro</div>
+  					<div class="card-body">
+    					<p class="card-text">
+  
 			{% else %}
-				<div class="success">
+				<div class="card text-dark bg-info mb-3 m-auto" style="max-width: 18rem;">
+					<div class="card-header">Info</div>
+  					<div class="card-body">
+    					<p class="card-text">
 			{% endif %}
-				{{ msg | safe }}</div><br>
+				{{ msg | safe }}</p></div></div><br>
 		{% endfor %}
 	{% endwith %}	
     <nav class="nav_tabs">
@@ -163,7 +170,7 @@
         <!--Fase 2-->
         <div class="tab-content" data-tab="tab2">  
             <div class="forms p-5">
-                <form action="{{ url_for('create_rnc') }}" method="POST">
+                <form action="{{ url_for('create_rnc') }}" method="POST" enctype="multipart/form-data">
                     {{ form2.csrf_token }}
                   
                     <div class="row mt-2">
@@ -447,16 +454,14 @@
                                     {% endfor %}
                                 </div>
                             </div>
-
-
-
-                            <hr>
+                          
                         </div>
 
                     </div>
                       
                     <hr class="mt-2">
-                    <button type="submit" class="btn btn-success mt-2" name="salvar_2">Salvar</button>
+                    <!--Funcional value-->
+                    <button id="salvar_2" type="submit" class="btn btn-success mt-2" name="submit" value = "salvar_2">Salvar</button>
                   </form>
                   <hr>
 
@@ -471,33 +476,257 @@
             
             
         </div>
+
         <!--Fase 3-->
         <div class="tab-content" data-tab="tab3">  
             <div class="forms p-5">
-                {{ wtf.quick_form(form3) }}
+                <form action="{{ url_for('create_rnc') }}" method="POST" enctype="multipart/form-data">
+                    {{ form3.csrf_token }}
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <span>3.1 - {{ form3.qtd_inspecionada.label }}</span>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">                                    
+                                    {{ form3.qtd_inspecionada(class='form-control') }}
+                                    {% for error in form3.qtd_inspecionada.errors %}
+                                    <span style="color: red;">[{{ error }}]</span>
+                                    {% endfor %}
+                                </div> 
+                            </div>
+                        
+                            <div class="col-md-3">
+                                <span>3.2 - {{ form3.qtd_reprovadas.label }}</span>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">                                    
+                                    {{ form3.qtd_reprovadas(class='form-control') }}
+                                    {% for error in form3.qtd_reprovadas.errors %}
+                                    <span style="color: red;">[{{ error }}]</span>
+                                    {% endfor %}
+                                </div> 
+                            </div>
+                        </div>
+                        
+                        <div class="row mt-3">
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    {{ form3.destino.label }}
+                                    {{ form3.destino(class='form-control') }}
+                                    {% for error in form3.destino.errors %}
+                                    <span style="color: red;">[{{ error }}]</span>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    {{ form3.texto_destino.label }}
+                                    {{ form3.texto_destino(class='form-control') }}
+                                    {% for error in form3.texto_destino.errors %}
+                                    <span style="color: red;">[{{ error }}]</span>
+                                    {% endfor %}
+                                </div>
+                            </div> 
+                        </div>
+                        <hr>
+
+                        <div class="row mt-3">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    {{ form3.equipe.label }}
+                                    {{ form3.equipe(class='form-control') }}
+                                    {% for error in form3.equipe.errors %}
+                                    <span style="color: red;">[{{ error }}]</span>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+
+                        <div class="row mt-3">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    {{ form3.coordenador_rnc.label }}
+                                    {{ form3.coordenador_rnc(class='form-control') }}
+                                    {% for error in form3.coordenador_rnc.errors %}
+                                    <span style="color: red;">[{{ error }}]</span>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    {{ form3.data_registro_3.label }}
+                                    {{ form3.data_registro_3(class='form-control') }}
+                                    {% for error in form3.data_registro_3.errors %}
+                                    <span style="color: red;">[{{ error }}]</span>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="col-md-4">                                
+                                <div class="a-img">
+                                    <div class="imageContainerAnexo">
+                                        {{ form3.anexo_3.label }}
+                                        <img id="imgPhoto-4" src="{{ url_for('static', filename='img/anexo.png') }}" alt="anexo" srcset="">
+                                    </div>
+                                </div>  
+                                <div class="form-group">              
+                                    {{ form3.anexo_3(class='form-control') }}
+                                    {% for error in form3.anexo_3.errors %}
+                                    <span style="color: red;">[{{ error }}]</span>
+                                    {% endfor %}
+                                </div>                                
+                            </div>
+                        </div>
+                        <hr>
+                        
+                        <div class="row mt-3">
+                            <div class="col-md-2">
+                                <button id="salvar_3" type="submit" class="btn btn-success mt-2" name="submit" value = "salvar_3">Salvar</button>
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                    
+                </form>
             </div>
-            <input type = "submit" value = "salvar_3" name = "submit">
         </div>
-        <div class="tab-content" data-tab="tab4">  
+
+        <!--Fase 4-->
+        <div class="tab-content" data-tab="tab4"> 
             <div class="forms p-5">
-                {{ wtf.quick_form(form4) }}
-            </div>		
+                <form action="{{ url_for('create_rnc') }}" method="POST" enctype="multipart/form-data">
+                    {{ form4.csrf_token }} 
+
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-3 p-3">
+                                <span>Mão de obra</span>
+                                <div class="col">
+                                    {% for i in range(1, 6)%}
+                                    <div class="mt-2">
+                                        <label for="mao_de_obra_{{ loop.index }}">
+                                            <input type="checkbox"/>                                
+                                        </label>
+                                        <input type="text" id="mao_de_obra_{{ loop.index }}" name="mao_de_obra_{{ loop.index }}" />
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="col-md-3 p-3">
+                                <span>Máquina</span>
+                                <div class="col">
+                                    {% for i in range(1, 6)%}
+                                    <div class="mt-2">
+                                        <label for="maquina_{{ loop.index }}">
+                                            <input type="checkbox"/>                                
+                                        </label>
+                                        <input type="text" id="maquina_{{ loop.index }}" name="maquina_{{ loop.index }}" />
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="col-md-3 p-3">
+                                <span>Meio Ambiente</span>
+                                <div class="col">
+                                    {% for i in range(1, 6)%}
+                                    <div class="mt-2">
+                                        <label for="meio_ambiente_{{ loop.index }}">
+                                            <input type="checkbox"/>                                
+                                        </label>
+                                        <input type="text" id="meio_ambiente_{{ loop.index }}" name="meio_ambiente_{{ loop.index }}" />
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>                      
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col-md-8">
+                               
+                            </div>
+                            <div class="col-md-4">
+                                <span>Causa Raiz</span>
+                                <input type="text" name="causa_raiz" id="causa_raiz">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3 p-3">
+                                <span>Meio de Medição</span>
+                                <div class="col">
+                                    {% for i in range(1, 6)%}
+                                    <div class="mt-2">
+                                        <label for="meio_de_medicao_{{ loop.index }}">
+                                            <input type="checkbox"/>                                
+                                        </label>
+                                        <input type="text" id="meio_de_medicao_{{ loop.index }}" name="meio_de_medicao_{{ loop.index }}" />
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="col-md-3 p-3">
+                                <span>Método</span>
+                                <div class="col">
+                                    {% for i in range(1, 6)%}
+                                    <div class="mt-2">
+                                        <label for="metodo_{{ loop.index }}">
+                                            <input type="checkbox"/>                                
+                                        </label>
+                                        <input type="text" id="metodo_{{ loop.index }}" name="metodo_{{ loop.index }}" />
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="col-md-3 p-3">
+                                <span>Material</span>
+                                <div class="col">
+                                    {% for i in range(1, 6)%}
+                                    <div class="mt-2">
+                                        <label for="material_{{ loop.index }}">
+                                            <input type="checkbox"/>                                
+                                        </label>
+                                        <input type="text" id="material_{{ loop.index }}" name="material_{{ loop.index }}" />
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>                      
+                        </div>
+                        <hr>
+
+                        <div class="row mt-3">
+                            <div class="col-md-2">
+                                <button id="salvar_4" type="submit" class="btn btn-success mt-2" name="submit" value = "salvar_4">Salvar</button>
+                            </div>
+                        </div>
+                    </div>	
+            	
+                </form>
         </div>
+
+        <!--Fase 5-->
         <div class="tab-content" data-tab="tab5">  
             <div class="forms p-5">
                 {{ wtf.quick_form(form5) }}
             </div>		
         </div>
+
+        <!--Fase 6-->
         <div class="tab-content" data-tab="tab6">  
             <div class="forms p-5">
                 {{ wtf.quick_form(form6) }}
             </div>		
         </div>
+
+        <!--Fase 7-->
         <div class="tab-content" data-tab="tab7">  
             <div class="forms p-5">
                 {{ wtf.quick_form(form7) }}
             </div>		
         </div>  
+
+        <!--Fase 8-->
         <div class="tab-content" data-tab="tab8">  
             <div class="forms p-5">
                 {{ wtf.quick_form(form8) }}

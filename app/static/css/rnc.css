@@ -105,7 +105,7 @@ input[type='file']{
 	width: 100%;
 }
 .a-img {
-	max-width: 100px;
+	max-width: 75px;
 	width: 100%;
 }
 .imageContainerPos {
@@ -124,7 +124,19 @@ input[type='file']{
 	border: 5px solid #13293D;
 	border-radius: 10px;
 }
-#imgPhoto-1, #imgPhoto-2, #imgPhoto-3 {
+#imgPhoto-1, #imgPhoto-2, #imgPhoto-3, #imgPhoto-4 {
 	width: 100%;
 	padding: 20px;
 }
+
+/* Fishbone */
+
+.label-0{ font-size: 2em; }
+.label-1{ font-size: 1.5em; fill: #111; }
+.label-2{ font-size: 1em; fill: #444; }
+.label-3{ font-size: .9em; fill: #888; }
+.label-4{ font-size: .8em; fill: #aaa; }
+
+.link-0{ stroke: #000; stroke-width: 2px}
+.link-1{ stroke: #333; stroke-width: 1px}
+.link-2, .link-3, .link-4{ stroke: #666; stroke-width: .5px; }
