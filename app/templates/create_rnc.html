@@ -605,11 +605,11 @@
                                 <span>Mão de obra</span>
                                 <div class="col">
                                     {% for i in range(1, 6)%}
-                                    <div class="mt-2">
+                                    <div class="form-group mt-2">
                                         <label for="mao_de_obra_{{ loop.index }}">
-                                            <input type="checkbox"/>                                
+                                            <input type="checkbox" name="check_mao_de_obra_{{ loop.index }}"/>                                
                                         </label>
-                                        <input type="text" id="mao_de_obra_{{ loop.index }}" name="mao_de_obra_{{ loop.index }}" />
+                                        <input type="text" id="mao_de_obra_{{ loop.index }}" class="form-control" name="mao_de_obra_{{ loop.index }}" />
                                     </div>
                                     {% endfor %}
                                 </div>
@@ -618,11 +618,11 @@
                                 <span>Máquina</span>
                                 <div class="col">
                                     {% for i in range(1, 6)%}
-                                    <div class="mt-2">
+                                    <div class="form-group mt-2">
                                         <label for="maquina_{{ loop.index }}">
                                             <input type="checkbox"/>                                
                                         </label>
-                                        <input type="text" id="maquina_{{ loop.index }}" name="maquina_{{ loop.index }}" />
+                                        <input type="text" id="maquina_{{ loop.index }}" class="form-control" name="maquina_{{ loop.index }}" />
                                     </div>
                                     {% endfor %}
                                 </div>
@@ -631,11 +631,11 @@
                                 <span>Meio Ambiente</span>
                                 <div class="col">
                                     {% for i in range(1, 6)%}
-                                    <div class="mt-2">
+                                    <div class="form-group mt-2">
                                         <label for="meio_ambiente_{{ loop.index }}">
                                             <input type="checkbox"/>                                
                                         </label>
-                                        <input type="text" id="meio_ambiente_{{ loop.index }}" name="meio_ambiente_{{ loop.index }}" />
+                                        <input type="text" id="meio_ambiente_{{ loop.index }}" class="form-control" name="meio_ambiente_{{ loop.index }}" />
                                     </div>
                                     {% endfor %}
                                 </div>
@@ -646,22 +646,22 @@
                             <div class="col-md-8">
                                
                             </div>
-                            <div class="col-md-4">
+                            <div class=" form-group col-md-4">
                                 <span>Causa Raiz</span>
-                                <input type="text" name="causa_raiz" id="causa_raiz">
+                                <input type="text" class="form-control" name="causa_raiz" id="causa_raiz">
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-md-3 p-3">
                                 <span>Meio de Medição</span>
-                                <div class="col">
+                                <div class="form-group col">
                                     {% for i in range(1, 6)%}
                                     <div class="mt-2">
                                         <label for="meio_de_medicao_{{ loop.index }}">
                                             <input type="checkbox"/>                                
                                         </label>
-                                        <input type="text" id="meio_de_medicao_{{ loop.index }}" name="meio_de_medicao_{{ loop.index }}" />
+                                        <input type="text" id="meio_de_medicao_{{ loop.index }}" class="form-control" name="meio_de_medicao_{{ loop.index }}" />
                                     </div>
                                     {% endfor %}
                                 </div>
@@ -670,24 +670,24 @@
                                 <span>Método</span>
                                 <div class="col">
                                     {% for i in range(1, 6)%}
-                                    <div class="mt-2">
+                                    <div class="form-group mt-2">
                                         <label for="metodo_{{ loop.index }}">
                                             <input type="checkbox"/>                                
                                         </label>
-                                        <input type="text" id="metodo_{{ loop.index }}" name="metodo_{{ loop.index }}" />
+                                        <input type="text" id="metodo_{{ loop.index }}" class="form-control" name="metodo_{{ loop.index }}" />
                                     </div>
                                     {% endfor %}
                                 </div>
                             </div>
                             <div class="col-md-3 p-3">
                                 <span>Material</span>
-                                <div class="col">
+                                <div class="form-group col">
                                     {% for i in range(1, 6)%}
                                     <div class="mt-2">
                                         <label for="material_{{ loop.index }}">
                                             <input type="checkbox"/>                                
                                         </label>
-                                        <input type="text" id="material_{{ loop.index }}" name="material_{{ loop.index }}" />
+                                        <input type="text" id="material_{{ loop.index }}" class="form-control" name="material_{{ loop.index }}" />
                                     </div>
                                     {% endfor %}
                                 </div>
@@ -703,6 +703,7 @@
                     </div>	
             	
                 </form>
+            </div>
         </div>
 
         <!--Fase 5-->

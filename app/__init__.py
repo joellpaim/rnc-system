@@ -1,5 +1,6 @@
 import os
 from datetime import datetime
+import json
 
 from dotenv import load_dotenv
 from flask import Flask, render_template, redirect, url_for, flash, request, jsonify
@@ -166,8 +167,14 @@ def create_rnc():
             flash('Salvo', 'success')
 
         if request.form['submit'] == 'salvar_4':
-            for i in form4.data:
-                print(request.form.get(i))
+            v =  request.form.to_dict()
+            v = json.dumps(v, indent = 4)
+            num = "12345"
+
+            with open(f"app/rncs/fase4.json", "w") as outfile: 
+                outfile.write(v)
+
+            #print(v)
             flash('Salvo', 'success')
 
         if request.form['submit'] == 'salvar_5':
