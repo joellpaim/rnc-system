@@ -20,16 +20,19 @@ app.register_blueprint(admin)
 
 # Carregar info do env via os
 app.config["SECRET_KEY"] = os.environ["SECRET_KEY"]
+
 # SQLite
-# app.config['SQLALCHEMY_DATABASE_URI'] = os.environ["DB_URI"]
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ["DB_URI"]
+
 # MySQL
-user = "root"
-password = ""
-server = "localhost"
-database = "flask"
-app.config["SQLALCHEMY_DATABASE_URI"] = f'mysql+mysqlconnector://{user}:{password}@{server}/{database}'
+#user = "root"
+#password = ""
+#server = "localhost"
+#database = "flask"
+#app.config["SQLALCHEMY_DATABASE_URI"] = f'mysql+mysqlconnector://{user}:{password}@{server}/{database}'
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-app.config['MYSQL_CHARSET'] = 'utf8mb4'
+#app.config['MYSQL_CHARSET'] = 'utf8mb4'
+
 app.config['MAIL_USERNAME'] = os.environ["EMAIL"]
 app.config['MAIL_PASSWORD'] = os.environ["PASSWORD"]
 app.config['MAIL_SERVER'] = "smtp.googlemail.com"
@@ -169,7 +172,6 @@ def create_rnc():
         if request.form['submit'] == 'salvar_4':
             v =  request.form.to_dict()
             v = json.dumps(v, indent = 4)
-            num = "12345"
 
             with open(f"app/rncs/fase4.json", "w") as outfile: 
                 outfile.write(v)
